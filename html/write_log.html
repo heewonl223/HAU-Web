@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="hau.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How about U?</title>
+</head>
+
+<style>
+    body{padding: 5%;text-align: center;}
+    canvas{border: 1px solid gray;border-radius: 3px;}
+    #im_hover{
+        width: 10px;
+        height: auto;
+        padding : 5px;
+        border: 1px solid rgb(177, 177, 177);
+        position: absolute;
+        display: none;
+        background: rgba(111,231,43,0.5);
+        border-radius: 5px;
+    }
+</style>
+
+<body>
+    <div id="wrapper">
+        <header id="header">
+            <h1><a href="home.html"><img src="reallogo.png" style="vertical-align: middle;width:100px;margin-left:40px">How About U?</a></h1>
+            <nav id="main_menu">
+                <span><a href="log.html" style="font-weight: 1000;">Treatment Daily Log</a></span>
+                <span><a href="result.html">Diagnosis Result</a></span>
+                <span><input type="text" placeholder="search" style="height:20px;margin-left:400px"><button><img src="searchbutton.png" style="vertical-align: middle;width:20px;"></button></span>
+                </ul>
+            </nav>
+        </header>
+        <hr color="#808080">
+        <br>
+        <section style = "padding : 10px 100px 10px 100px">
+
+            <div style="float:left;width:100%;height:100%;background-Color:#ebfbff">
+                <table border = "1"vertical-align="top">
+                    <tr height=1000> 
+                        <td width=2000 valign="top"> 
+                            <p style="font-size:30px; font-family: Consolas; text-align: left;">
+                                <br>&nbsp
+                            Writing My Daily Log
+                            
+                            </p>
+                            <br>
+                            <hr color="#d8d8d8" border = "1px"width = "1580"> 
+                            <br>
+                            <input type="text" placeholder=" Title" style="width:1580px;height:50px;font-size:30px;font-family: Consolas;">
+
+                            <br>
+                            <br>
+                            
+                            <table border = "0" padding = "10px">
+                                <tr>
+                                    <td><p style="font-size:20px; font-family: Consolas; text-align: left;">
+                                        <hr color="#d8d8d8" border = "1px"width = "920"> 
+                                        <br>&nbsp&nbsp&nbsp&nbsp
+                                        
+                                        <img src = "image.png" width = "50px">
+                                        &nbsp&nbsp&nbsp
+                                        <img src = "video.png"width = "60px">
+                                        &nbsp&nbsp&nbsp
+                                        <img src = "add.png"width = "55px">
+                                    
+                                    </p>
+                                    <br>
+                                    <hr color="#d8d8d8" border = "1px"width = "920"> 
+                                    <br>
+                                    &nbsp&nbsp&nbsp&nbsp<input type="text" placeholder=" Contents" style="width:900px;height:700px;font-size:20px;font-family: Consolas;vertical-align:top;">
+                                    <br>
+                                    &nbsp&nbsp&nbsp&nbsp<input type="text" placeholder=" # Add Hashtag" style="width:900px;height:100px;font-size:20px;font-family: Consolas;vertical-align:top;">
+        
+                                    <br><br>
+                                    </td>
+                                    <td>
+                                        <hr color="#d8d8d8" border = "1px"width = "665"> 
+                                        <p style="font-size:30px; font-family: Consolas; text-align: center; padding-left: 10px;">
+                                            <br>
+                                            CheckBox Lists
+                                            <br><br>
+                                            
+                                        </p>
+                                        <hr color="#d8d8d8" border = "1px"width = "665"> 
+                                        <br><br><br>
+
+                                        <canvas width='665' height='700' id='canvas'></canvas>
+                                        <div id='im_hover'></div>
+                                        
+                                        <br>
+                                    &nbsp&nbsp&nbsp&nbsp<input type="text" placeholder=" Add CheckBox" style="width:660px;height:100px;font-size:20px;font-family: Consolas;vertical-align:top;">
+                                   
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </td> 
+                    </tr>
+                </table>
+            </div>
+
+        </section>
+        <footer>
+
+        </footer>
+    </div>
+
+</body>
+</html>
+
+<script>    
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+   
+    var width = canvas.clientWidth;
+    var height = canvas.clientHeight;
+
+    var position = {
+        min_x : width * 0.1,
+        max_x : width * 0.9,
+        min_y : height * 0.1,
+        max_y : height * 0.9
+    }
+    var wid = 60;
+
+    var value = [90, 50, 60, 70, 30, 80];
+    function drawing(){
+        var virtualVal = value.slice().map((arg)=>1); 
+        var adder = 0;
+        var interval = setInterval(() => {
+            ctx.clearRect(0, 0, width, height);  //추가
+            virtualVal.forEach( (data, idx) => {
+                var devide = idx / value.length ;
+                if(value[idx] > data){
+                    data++;
+                    virtualVal[idx] = data;   
+                }
+                var my_pos = commonCal(devide, data);
+                ctx.strokeRect(my_pos[0], my_pos[1], my_pos[2],my_pos[3]);
+            });  
+            var chekcer = virtualVal.slice().map((arg)=>false);
+            virtualVal.forEach( (data1, idx1) => {
+                value.forEach( (data2, idx2) => {
+                    if(data1 >= data2 && idx1 == idx2){
+                        chekcer[idx1] = true;
+                    }
+                });
+            }); 
+            var breaker = true;
+            chekcer.forEach( arg => {
+                if(!arg){
+                    breaker = false;
+                }
+            });     
+            if(breaker){
+                console.log('fin');
+                clearInterval(interval);
+                makeText()
+            }
+        }, 10);        
+    }
+
+    drawing();
+
+    function makeText(){
+        value.forEach((data, idx) =>{
+            var devide = idx / value.length;
+            var len = (wid/2) - ctx.measureText(data+'').width / 2;
+            ctx.strokeText(data, position.min_x + position.max_x*devide + len, position.max_y + position.min_y/2);
+        });        
+    }
+    
+    function hoverDrawing(hoverIdx){
+        ctx.clearRect(0,0,width, height);
+        value.forEach( (data, idx) => {
+            ctx.save();
+            if(idx == hoverIdx){
+                ctx.strokeStyle = 'blue';
+            }
+            var devide = idx / value.length;
+            var my_pos = commonCal(devide, data);
+            ctx.strokeRect(my_pos[0], my_pos[1], my_pos[2],my_pos[3]);            
+            ctx.restore();
+        });      
+        makeText();  
+    }
+
+    var drawed = false;
+    canvas.addEventListener('mousemove', function (event) {
+        var x1 = event.clientX - canvas.offsetLeft;
+        var y1 = event.clientY - canvas.offsetTop;        
+        var inn = isInsideRect(x1, y1);
+        //console.log(inn);
+        if (inn.result) {
+            drawed = true;
+            hoverDrawing(inn.index);
+            toolTipMaker(inn.value, event.clientX, event.clientY, true);
+        } else {
+            if(drawed){
+                hoverDrawing(-1);
+                toolTipMaker(0, 0, 0, false);
+            }
+        }
+    }); 
+
+    function isInsideRect(x1, y1){
+        var result = false;
+        var index = -1;
+        var showValue = -1;
+        for(var i=0; i < value.length;i++){
+            var data = value[i];
+
+            var devide = i / value.length ;
+            var start_x = position.min_x + position.max_x*devide;
+            var end_x = start_x + wid;
+
+            var start_y = position.max_y* ( 1-(data/100) );
+            var end_y = position.max_y ; 
+            
+            if(x1 >= start_x && x1 <= end_x){  
+
+                if(y1 >= start_y && y1 <= end_y){
+                    result = true;
+                    index = i;
+                    showValue = data;
+                    break;
+                }
+            } 
+        }
+        return {result:result, index:index, value:showValue};
+    }
+
+    function toolTipMaker(text, pos_x, pos_y, onOff){
+        var hover = document.getElementById('im_hover');
+        if(!onOff){
+            hover.style.display = 'none';
+            hover.innerHTML = '';
+        } else {
+            hover.style.display = 'block';
+            hover.style.left =  pos_x + pos_x*0.02; //너무 딱 달라붙어서 간격을 주었다.
+            hover.style.top = pos_y + pos_y*0.02; //너무 딱 달라붙어서 간격을 주었다.
+            hover.innerHTML = text;
+        }
+    }
+    
+
+    function commonCal(devide, data){
+        return [
+            position.min_x + position.max_x*devide, 
+            position.max_y* ( 1-(data/100) ), 
+            wid, 
+            position.max_y - position.max_y* ( 1-(data/100) )
+        ];
+    }
+
+</script>
+    
