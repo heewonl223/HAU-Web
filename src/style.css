@@ -1,0 +1,42 @@
+@import "https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css";
+
+* {
+  box-sizing: border-box;
+  /*font: consolas, sans-serif;
+    폰트설정하는 법 더 찾아보기*/
+  padding: 0;
+  margin: 0;
+}
+
+/*일단 app.js를 div로 감싸긴 했는데 이게 맞는지는 모르겟음 대충 확인 부탁
+  이거 한 이유는 창 줄어드는거랑 상관없이 고정됐으면 해서*/
+#wrapper{
+  width: 1800px;
+  margin: 15px auto;
+  text-align: left;
+}
+
+a:link {text-decoration: none; color: #000000;}
+a:visited {text-decoration: none; color: #000000;}
+a:active {text-decoration: none; color: #000000;}
+a:hover {text-decoration: none; font-weight: bold; color: #000000;}
+
+.navi{
+    font-size: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    float: left;
+    width: 400px;
+    text-align: center; 
+}
+
+#Title{
+  font-size: 50px;
+  font-weight: bold;
+}
+
+form{
+    content:'';
+    display:block;
+    clear:both;
+ }
