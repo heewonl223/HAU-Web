@@ -1,0 +1,83 @@
+*{margin: 0px; padding: 0px}
+h1{font: bold 50px consolas, sans-serif;}
+a:link {text-decoration: none; color: #000000;}
+a:visited {text-decoration: none; color: #000000;}
+a:active {text-decoration: none; color: #000000;}
+a:hover {text-decoration: none; font-weight: bold; color: #000000;}
+header, section, footer, aside, time, nav, article, figure, figcaption, hgroup{display: block;}
+body{text-align: center;}
+
+#empty {
+    width: 100%;
+    border: 0;
+    height: 300px;
+    margin: 20px;
+}
+
+#wrapper{
+   width: 1800px;
+   margin: 15px auto;
+   text-align: left;
+ }
+
+
+#main_menu{padding:5px 15px;}
+#main_menu span{
+   display: inline-block;
+   list-style: none;
+   padding: 5px;
+   font: 25px consolas, sans-serif;
+   float: left;
+   margin-left: 40px;
+   text-align: center;
+}
+
+#header{
+   top: 0;
+   left: 0;
+   right: 0;
+   
+   height: 75px;
+   padding: 1rem;
+   display: flex;
+   align-items: center;
+}
+
+/*home*/
+#home_whole{
+	width: 1000px;
+	margin: 0 auto;
+	margin-top: 250px;
+}
+#home_info{
+	width: 500px;
+	float: left;	
+}
+#home_sign{
+	width: 500px;
+	float:left;
+}
+#home_info_text{
+	padding-top: 50px;
+	font: 20px consolas, sans-serif;
+
+}
+/*home end*/
+
+/*result*/
+.wrap{
+	width: 1800px;
+	height: 850px;
+	overflow-x: scroll;
+	white-space:nowrap;
+  }
+
+.wrap div{
+	width:30%;height:70%;
+	text-align:center; 
+	padding-top:80px; 
+	margin:80px;
+	display: inline-block;
+	vertical-align: top;
+}
+/*result end*/
