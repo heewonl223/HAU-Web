@@ -21,22 +21,88 @@ a:visited {text-decoration: none; color: #000000;}
 a:active {text-decoration: none; color: #000000;}
 a:hover {text-decoration: none; font-weight: bold; color: #000000;}
 
-.navi{
-    font-size: 30px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+.App {
+    text-align: center;
+}
+
+/* .navi{
+    font-size: 40px;
+    padding-top: 60px;
+    padding-bottom: 30px;
     float: left;
-    width: 400px;
+    width: 600px;
     text-align: center; 
+    font-family: "Consolas";
+    border-bottom:5px solid #d9d9d9;
+} */
+
+#Nav_img{
+  padding-top: 60px;
+  padding-bottom: 11px;
+  font-size: 62px;
+  font-weight: bold;
+  font-family: "Consolas";
+  float: left;
+  width: 200px;
+  text-align: right;
+  border-bottom:5px solid #d9d9d9; 
 }
 
 #Title{
-  font-size: 50px;
+  padding-top: 65px;
+  padding-bottom: 32px;
+  font-size: 75px;
   font-weight: bold;
+  font-family: "Consolas";
+  float: left;
+  width: 600px;
+  text-align: left;
+  border-bottom:5px solid #d9d9d9; 
 }
+
+#Nav1{
+  font-size: 40px;
+  padding-top: 78px;
+  padding-bottom: 54px;
+  font-family: "Consolas";
+  float: left;
+  width: 500px;
+  text-align: center;
+  border-bottom:5px solid #d9d9d9; 
+}
+
+
 
 form{
     content:'';
     display:block;
     clear:both;
+    text-align: right; 
  }
+
+ .footer {
+
+    position:absolute;
+    left:0px;
+    bottom:0;
+    width:100%;
+    height:70px;
+    padding:10px 0;
+    border-top:1px solid #d9d9d9;
+    font-size:20px;
+    background-color:#f1f1f1;
+    text-align:center;
+    color:#888
+}
+
+box{
+    display:inline-block;
+    width:100px;
+    height:100px;
+    border:1px solid black;
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+    
