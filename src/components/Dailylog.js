@@ -37,7 +37,7 @@ const Dailylog = ({userObj}) => {
     <div>
         <form onSubmit={onSubmit}>
             <input value={record} onChange={onChange} type="text" placeholder="Writing My Daily Log" maxLength={120} />
-            <input type="submit" value="Record" />
+            <input type="submit" value="Upload" />
         </form>
         <div>
             {records.map((record) => (
@@ -51,6 +51,7 @@ const Dailylog = ({userObj}) => {
             ))}
         </div>
     </div>
+    
     );
 };
 export default Dailylog;

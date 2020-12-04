@@ -5,6 +5,8 @@ import Dailylog from "components/Dailylog";
 import Navigation from "components/Navigation";
 import Profile from "routes/Profile";
 import Diagnosis from "components/Diagnosis";
+import Logo from 'components/reallogo.png';
+
 
 const AppRouter = ({isLoggedIn, userObj}) => {
     return (
@@ -26,7 +28,7 @@ const AppRouter = ({isLoggedIn, userObj}) => {
                 ) : (
                     <>
                     <Route exact path="/">
-                        <Auth />
+                        <Auth />                    
                     </Route>
                     <Route exact path="/profile">
                         <Auth />

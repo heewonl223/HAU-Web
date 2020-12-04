@@ -1,4 +1,4 @@
-import { dbService } from "fbase";
+import { dbService, storageService } from "fbase";
 import React, { useState } from "react";
 
 const Result = ({resultObj, isOwner}) => {
@@ -8,6 +8,7 @@ const Result = ({resultObj, isOwner}) => {
         const ok = window.confirm("Are you sure you want to delete this diagnosis?");
         if (ok) {
             await dbService.doc(`results/${resultObj.id}`).delete();    // orange records == collection name
+            await storageService.refFromURL(resultObj.attachmentUrl).delete();
         }
     };
     const toggleEditing = () => setEditing((prev) => !prev);
@@ -43,6 +44,9 @@ const Result = ({resultObj, isOwner}) => {
                 ) : (
                 <>
                     <h4>{resultObj.text}</h4>
+                    {resultObj.attachmentUrl && (
+                        <img src={resultObj.attachmentUrl} width="50px" height="50px" />
+                    )}
                     {isOwner && (
                     <>
                         <button onClick={onDeleteClick}>Delete diagnosis result</button>

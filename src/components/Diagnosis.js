@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from "react";
-import { dbService } from "fbase";
+import { v4 as uuidv4 } from "uuid";
+import { dbService, storageService } from "fbase";
 import Result from "components/Result";
 
 const Diagnosis = ({userObj}) => {
     const [result, setResult] = useState("");
     const [results, setResults] = useState([]);
+    const [attachment, setAttachment] = useState();
     useEffect(() => {
         // snapshot : any change in database -> alert
         dbService.collection("results").onSnapshot((snapshot) => {
@@ -18,13 +20,23 @@ const Diagnosis = ({userObj}) => {
     }, []);
     const onSubmit = async (event) => {
         event.preventDefault();
-        await dbService.collection("results").add({
+        let attachmentUrl = "";
+        if (attachment !== ""){
+            const attachmentRef = storageService
+                .ref()
+                .child(`${userObj.uid}/${uuidv4()}`);
+            const response = await attachmentRef.putString(attachment, "data_url");
+            attachmentUrl = await response.ref.getDownloadURL();
+        }
+        const resultObj = {
             text: result,
             createdAt: Date.now(),
             creatorId: userObj.uid,
-        });
-        // submit(save) 이후 빈칸 만들기
-        setResult("");
+            attachmentUrl,
+        }; 
+        await dbService.collection("results").add(resultObj);
+            setResult("");
+            setAttachment("");
     };
     const onChange = (event) => {
         const {
@@ -32,17 +44,44 @@ const Diagnosis = ({userObj}) => {
         } = event;
         setResult(value);
     };
-    console.log(results);
+    const onFileChange = (event) => {
+        const {
+          target: { files },
+        } = event;
+        const theFile = files[0];
+        const reader = new FileReader();
+        reader.onloadend = (finishedEvent) => {
+          const {
+            currentTarget: { result },
+          } = finishedEvent;
+          setAttachment(result);
+        };
+        reader.readAsDataURL(theFile);
+      };
+      const onClearAttachment = () => setAttachment(null);
     return (
     <div>
         <form onSubmit={onSubmit}>
-            <input value={result} onChange={onChange} type="text" placeholder="Upload Diagnosis" maxLength={120} />
+            <input 
+                value={result} 
+                onChange={onChange} 
+                type="text" 
+                placeholder="Writing My Daily Log" 
+                maxLength={120} 
+            />
+            <input type="file" accept="image/*" onChange={onFileChange} />
             <input type="submit" value="Upload" />
+            {attachment && (
+                <div>
+                    <img src={attachment} width="50px" height="50px" />
+                    <button onClick={onClearAttachment}>Clear</button>
+                </div>
+            )}
         </form>
         <div>
             {results.map((result) => (
-                // record.js helps keep code short
-                // create record(daily log) component
+                // result.js helps keep code short
+                // create result(diagnosis result) component
                 <Result
                     key={result.id}
                     resultObj={result}
