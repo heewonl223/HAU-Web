@@ -1,15 +1,8 @@
 @import "https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css";
 
-* {
-  box-sizing: border-box;
-  /*font: consolas, sans-serif;
-    폰트설정하는 법 더 찾아보기*/
-  padding: 0;
-  margin: 0;
-}
 
-/*일단 app.js를 div로 감싸긴 했는데 이게 맞는지는 모르겟음 대충 확인 부탁
-  이거 한 이유는 창 줄어드는거랑 상관없이 고정됐으면 해서*/
+/*App.js*/
+
 #wrapper{
   width: 1800px;
   margin: 15px auto;
@@ -25,16 +18,9 @@ a:hover {text-decoration: none; font-weight: bold; color: #000000;}
     text-align: center;
 }
 
-/* .navi{
-    font-size: 40px;
-    padding-top: 60px;
-    padding-bottom: 30px;
-    float: left;
-    width: 600px;
-    text-align: center; 
-    font-family: "Consolas";
-    border-bottom:5px solid #d9d9d9;
-} */
+/*App.js end*/
+
+/*Navigation.js*/
 
 #Nav_img{
   padding-top: 60px;
@@ -71,14 +57,9 @@ a:hover {text-decoration: none; font-weight: bold; color: #000000;}
   border-bottom:5px solid #d9d9d9; 
 }
 
+/*Navigation.js*/
 
-
-form{
-    content:'';
-    display:block;
-    clear:both;
-    text-align: right; 
- }
+ /*Footer.js*/
 
  .footer {
 
@@ -94,6 +75,7 @@ form{
     text-align:center;
     color:#888
 }
+ /*Footer.js*/
 
 box{
     display:inline-block;
@@ -106,3 +88,9 @@ box{
     transform:translate(-50%,-50%);
 }
     
+form{
+  content:'';
+  display:block;
+  clear:both;
+  text-align: right; 
+}
