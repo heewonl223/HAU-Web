@@ -9,7 +9,9 @@ const Diagnosis = ({userObj}) => {
     const [attachment, setAttachment] = useState();
     useEffect(() => {
         // snapshot : any change in database -> alert
-        dbService.collection("results").onSnapshot((snapshot) => {
+        dbService.collection("results")
+        .orderBy("createdAt", "desc")
+        .onSnapshot((snapshot) => {
             const resultArray = snapshot.docs.map(doc => ({
                 // every item on array will look like this
                 id:doc.id,

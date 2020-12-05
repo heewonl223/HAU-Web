@@ -7,7 +7,9 @@ const Dailylog = ({userObj}) => {
     const [records, setRecords] = useState([]);
     useEffect(() => {
         // snapshot : any change in database -> alert
-        dbService.collection("records").onSnapshot((snapshot) => {
+        dbService.collection("records")
+        .orderBy("createdAt", "desc")
+        .onSnapshot((snapshot) => {
             const recordArray = snapshot.docs.map(doc => ({
                 // every item on array will look like this
                 id:doc.id,
