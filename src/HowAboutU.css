@@ -77,6 +77,71 @@ a:hover {text-decoration: none; font-weight: bold; color: #000000;}
 }
  /*Footer.js end*/
 
+  /* Auth.js */
+
+  .authcontainer {
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    margin-left : 55%;
+    padding-top : 15%;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .authInput {
+    max-width: 320px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 30px;
+    background-color: rgba(255, 255, 255, 1);
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: black;
+    box-sizing: content-box;
+  }
+  
+  .authSubmit {
+    text-align: center;
+    background: #04aaff;
+    color: white;
+    margin-top: 10px;
+    box-sizing: content-box;
+    cursor: pointer;
+  }
+  
+  .authError {
+    color: tomato;
+    text-align: center;
+    font-weight: 500;
+    font-size: 20px;
+  }
+  
+  .authSwitch {
+    color: #04aaff;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 500;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    display: block;
+    font-size: 15px;
+    text-decoration: underline;
+    /*authcontainer*/
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    margin-left : 55%;
+    justify-content: center;
+    align-items: center; 
+  }
+  
+    /* Auth.js end */
+
+
+
 box{
     display:inline-block;
     width:100px;
