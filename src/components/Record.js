@@ -26,17 +26,28 @@ const Record = ({recordObj, isOwner}) => {
         setNewRecord(value);
     };
     return (
-        <div>
+        <div class ="record">
             {
                 editing ? (
                 <>
                     {isOwner && (
                         <>
-                            <form onSubmit={onSubmit}>
-                                <input type="text" placeholder="Edit your log" value={newRecord} required onChange={onChange} />
-                                <input type="submit" value="Update daily log" />
+                            <form onSubmit={onSubmit} className="container recordEdit">
+                                <input 
+                                    type="text" 
+                                    placeholder="Edit your log" 
+                                    value={newRecord} 
+                                    required 
+                                    onChange={onChange} 
+                                    className="record_formInput"
+                                />
+                                <input 
+                                    type="submit" 
+                                    value="Update daily log" 
+                                    className="editUpdateBtn"
+                                />
                             </form>
-                            <button onClick={toggleEditing}>Cancel</button>
+                            <button onClick={toggleEditing} className="editUpdateBtn editCancelBtn">Cancel</button>
                         </>
                     )}
                 </>
@@ -44,10 +55,10 @@ const Record = ({recordObj, isOwner}) => {
                 <>
                     <h4>{recordObj.text}</h4>
                     {isOwner && (
-                    <>
-                        <button onClick={onDeleteClick}>Delete Log</button>
-                        <button onClick={toggleEditing}>Edit Log</button>
-                    </>
+                    <div>
+                        <button onClick={toggleEditing} className ="record_editBtn">Edit Log</button>
+                        <button onClick={onDeleteClick} className ="record_deleteBtn">Delete Log</button>
+                    </div>
                     )}
                 </>
                 )}
