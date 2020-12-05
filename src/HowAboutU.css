@@ -141,6 +141,86 @@ a:hover {text-decoration: none; font-weight: bold; color: #000000;}
     /* Auth.js end */
 
 
+/* Record.js */
+ .container {
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+  }
+
+
+.record_formInput {
+    width: 100%;
+    padding: 20px 20px;
+    border-radius: 20px;
+    border: 1px solid black;
+    text-align: center;
+    background-color: white;
+    color: black;
+}
+
+.record_editBtn {
+    width: 130px;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: #04aaff;
+    margin-left: 5px;
+    margin-top : 20px;
+    padding: 3px
+  }
+
+.record_deleteBtn {
+    width: 130px;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: tomato;
+    margin-left: 5px;
+    padding: 3px
+}
+
+.recordEdit .record_editBtn {
+    cursor: pointer;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+  
+.record {
+    margin-bottom: 20px;
+    background-color: rgb(178, 199, 178);
+    width: 100%;
+    max-width: 320px;
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    color: rgba(0, 0, 0, 0.8);
+}
+  
+.record h4 {
+    font-size: 20px;
+}
+  
+.editUpdateBtn {
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    padding: 7px 20px;
+    text-align: center;
+    color: white;
+    border-radius: 20px;
+    background-color: #04aaff;
+    cursor: pointer;
+  }
+
+.editCancelBtn {
+    cursor: pointer;
+    background-color: tomato;
+  }
+ /* Record.js end*/
+
+
 
 box{
     display:inline-block;
