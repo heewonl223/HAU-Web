@@ -5,7 +5,6 @@ import { authService } from "fbase";
 import '../HowAboutU.css'
 import Footer from "./Footer";
 
-
 function App() {
   const [init, setInit] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -23,14 +22,15 @@ function App() {
     });
   }, []);
   return (
-  
-  <div id="init">
-    {init ? (<AppRouter isLoggedIn={isLoggedIn} userObj={userObj} /> 
-    ) : (
-      "Welcome! :)" 
-    )}
-    
-    <Footer/>
+    <div id="wrapper">
+      {init ? (<AppRouter isLoggedIn={isLoggedIn} userObj={userObj} /> 
+      ) : (
+        <>
+        "Initializing...",
+        "Welcome! :)"
+        </> 
+      )}
+      <Footer/>
     </div>
   );
 }

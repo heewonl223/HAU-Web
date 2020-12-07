@@ -1,0 +1,240 @@
+@import "https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css";
+
+
+/*App.js*/
+
+#wrapper{
+  width: 1800px;
+  margin: 15px auto;
+  text-align: left;
+  font-size: 70px;
+}
+
+a:link {text-decoration: none; color: #000000;}
+a:visited {text-decoration: none; color: #000000;}
+a:active {text-decoration: none; color: #000000;}
+a:hover {text-decoration: none; font-weight: bold; color: #000000;}
+
+.App {
+    text-align: center;
+}
+
+/*App.js end*/
+
+/*Navigation.js*/
+
+#Nav_img{
+  padding-top: 60px;
+  padding-bottom: 11px;
+  font-size: 62px;
+  font-weight: bold;
+  font-family: "Consolas";
+  float: left;
+  width: 200px;
+  text-align: right;
+  border-bottom:5px solid #d9d9d9; 
+}
+
+#Title{
+  padding-top: 65px;
+  padding-bottom: 32px;
+  font-size: 75px;
+  font-weight: bold;
+  font-family: "Consolas";
+  float: left;
+  width: 600px;
+  text-align: left;
+  border-bottom:5px solid #d9d9d9; 
+}
+
+#Nav1{
+  font-size: 40px;
+  padding-top: 78px;
+  padding-bottom: 54px;
+  font-family: "Consolas";
+  float: left;
+  width: 500px;
+  text-align: center;
+  border-bottom:5px solid #d9d9d9; 
+}
+
+/*Navigation.js end*/
+
+ /*Footer.js*/
+
+ .footer {
+
+    position:fixed;
+    left:0px;
+    bottom:0;
+    width:100%;
+    height:70px;
+    padding:10px 0;
+    border-top:1px solid #d9d9d9;
+    font-size:20px;
+    background-color:#f1f1f1;
+    text-align:center;
+    color:#888
+}
+ /*Footer.js end*/
+
+ /* Auth.js */
+
+ .authcontainer {
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  margin-left : 55%;
+  padding-top : 15%;
+  justify-content: center;
+  align-items: center;
+}
+
+.authInput {
+  max-width: 320px;
+  width: 100%;
+  padding: 10px;
+  border-radius: 30px;
+  background-color: rgba(255, 255, 255, 1);
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: black;
+  box-sizing: content-box;
+}
+
+.authSubmit {
+  text-align: center;
+  background: #04aaff;
+  color: white;
+  margin-top: 10px;
+  box-sizing: content-box;
+  cursor: pointer;
+}
+
+.authError {
+  color: tomato;
+  text-align: center;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.authSwitch {
+  color: #04aaff;
+  cursor: pointer;
+  text-align: center;
+  font-weight: 500;
+  margin-top: 10px;
+  margin-bottom: 50px;
+  display: block;
+  font-size: 15px;
+  text-decoration: underline;
+  /*authcontainer*/
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  margin-left : 55%;
+  justify-content: center;
+  align-items: center; 
+}
+
+  /* Auth.js end */
+
+
+box{
+    display:inline-block;
+    width:100px;
+    height:100px;
+    border:1px solid black;
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+    
+form{
+  content:'';
+  display:block;
+  clear:both;
+  text-align: right; 
+}
+
+/* Record.js */
+.container {
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.record_formInput {
+  width: 100%;
+  padding: 20px 20px;
+  border-radius: 20px;
+  border: 1px solid black;
+  text-align: center;
+  background-color: white;
+  color: black;
+}
+
+.record_editBtn {
+  width: 130px;
+  border-radius: 20px;
+  cursor: pointer;
+  background-color: #04aaff;
+  margin-left: 5px;
+  margin-top : 20px;
+  padding: 3px
+}
+
+.record_deleteBtn {
+  width: 130px;
+  border-radius: 20px;
+  cursor: pointer;
+  background-color: tomato;
+  margin-left: 5px;
+  padding: 3px
+}
+
+.recordEdit .record_editBtn {
+  cursor: pointer;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.record {
+  margin-bottom: 20px;
+  background-color: rgb(178, 199, 178);
+  width: 100%;
+  max-width: 320px;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.record h4 {
+  font-size: 20px;
+}
+
+.editUpdateBtn {
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+  padding: 7px 20px;
+  text-align: center;
+  color: white;
+  border-radius: 20px;
+  background-color: #04aaff;
+  cursor: pointer;
+}
+
+.editCancelBtn {
+  cursor: pointer;
+  background-color: tomato;
+}
+/* Record.js end*/
