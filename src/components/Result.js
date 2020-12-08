@@ -7,7 +7,7 @@ const Result = ({resultObj, isOwner}) => {
     const onDeleteClick = async () => {
         const ok = window.confirm("Are you sure you want to delete this diagnosis?");
         if (ok) {
-            await dbService.doc(`results/${resultObj.id}`).delete();    // orange records == collection name
+            await dbService.doc(`results/${resultObj.id}`).delete();    
             await storageService.refFromURL(resultObj.attachmentUrl).delete();
         }
     };
@@ -27,17 +27,28 @@ const Result = ({resultObj, isOwner}) => {
         setNewResult(value);
     };
     return (
-        <div>
+        <div class ="result">
             {
                 editing ? (
                 <>
                     {isOwner && (
                         <>
-                            <form onSubmit={onSubmit}>
-                                <input type="text" placeholder="Edit your diagnosis result" value={newResult} required onChange={onChange} />
-                                <input type="submit" value="Update diagnosis result" />
+                            <form onSubmit={onSubmit} className="container resultEdit">
+                                <input 
+                                    type="text" 
+                                    placeholder="Edit your diagnosis result" 
+                                    value={newResult} 
+                                    required 
+                                    onChange={onChange}
+                                    className="result_formInput"
+                                />
+                                <input 
+                                    type="submit" 
+                                    value="Update diagnosis result"
+                                    className="editUpdateBtn" 
+                                />
                             </form>
-                            <button onClick={toggleEditing}>Cancel</button>
+                            <button onClick={toggleEditing} className="editUpdateBtn editCancelBtn">Cancel</button>
                         </>
                     )}
                 </>
@@ -45,12 +56,12 @@ const Result = ({resultObj, isOwner}) => {
                 <>
                     <h4>{resultObj.text}</h4>
                     {resultObj.attachmentUrl && (
-                        <img src={resultObj.attachmentUrl} width="50px" height="50px" />
+                        <img src={resultObj.attachmentUrl} />
                     )}
                     {isOwner && (
                     <>
-                        <button onClick={onDeleteClick}>Delete diagnosis result</button>
-                        <button onClick={toggleEditing}>Edit diagnosis result</button>
+                        <button onClick={toggleEditing} className ="result_editBtn">Edit diagnosis result</button>
+                        <button onClick={onDeleteClick} className ="result_deleteBtn">Delete diagnosis result</button>
                     </>
                     )}
                 </>
