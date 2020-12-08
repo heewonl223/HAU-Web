@@ -6,12 +6,10 @@ import Result from "components/Result";
 const Diagnosis = ({userObj}) => {
     const [result, setResult] = useState("");
     const [results, setResults] = useState([]);
-    const [attachment, setAttachment] = useState();
+    const [attachment, setAttachment] = useState("");
     useEffect(() => {
         // snapshot : any change in database -> alert
-        dbService.collection("results")
-        .orderBy("createdAt", "desc")
-        .onSnapshot((snapshot) => {
+        dbService.collection("results").onSnapshot((snapshot) => {
             const resultArray = snapshot.docs.map(doc => ({
                 // every item on array will look like this
                 id:doc.id,
@@ -22,6 +20,9 @@ const Diagnosis = ({userObj}) => {
     }, []);
     const onSubmit = async (event) => {
         event.preventDefault();
+        if (result === "") {
+            return;
+        }
         let attachmentUrl = "";
         if (attachment !== ""){
             const attachmentRef = storageService
@@ -63,20 +64,47 @@ const Diagnosis = ({userObj}) => {
       const onClearAttachment = () => setAttachment(null);
     return (
     <div>
-        <form onSubmit={onSubmit}>
-            <input 
-                value={result} 
-                onChange={onChange} 
-                type="text" 
-                placeholder="Writing My Daily Log" 
-                maxLength={120} 
+        <form onSubmit={onSubmit} className="diagnosisForm">
+                <div className="diagnosisInput__container">
+                <input 
+                    className="diagnosisInput__input"
+                    value={result} 
+                    onChange={onChange} 
+                    type="text" 
+                    placeholder="Writing My Daily Log" 
+                    maxLength={1000} 
+                />
+                <input 
+                    type="submit" 
+                    value="Upload" 
+                    className="diagnosisInput__arrow" 
+                />
+            </div>
+            <label for="attach-file" className="diagnosisInput__label">
+                <span>Add photos</span>
+                
+            </label>
+            <input
+                id="attach-file"
+                type="file"
+                accept="image/*"
+                onChange={onFileChange}
+                style={{
+                opacity: 0,
+                }}
             />
-            <input type="file" accept="image/*" onChange={onFileChange} />
-            <input type="submit" value="Upload" />
+
             {attachment && (
-                <div>
-                    <img src={attachment} width="50px" height="50px" />
-                    <button onClick={onClearAttachment}>Clear</button>
+                <div className="diagnosisForm__attachment">
+                    <img
+                        src={attachment}
+                        style={{
+                        backgroundImage: attachment,
+                        }}
+                    />
+                    <div className="diagnosisForm__clear" onClick={onClearAttachment}>
+                        <span>Clear</span>
+                    </div>
                 </div>
             )}
         </form>
