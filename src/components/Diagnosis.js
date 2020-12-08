@@ -4,8 +4,8 @@ import { dbService, storageService } from "fbase";
 import Result from "components/Result";
 
 const Diagnosis = ({userObj}) => {
-    const [result, setResult] = useState("");   // write log
-    const [results, setResults] = useState([]); // view log
+    const [result, setResult] = useState("");
+    const [results, setResults] = useState([]);
     const [tag, setTag] = useState("");
     const [tags, setTags] = useState([]); // view log
     const [attachment, setAttachment] = useState();
@@ -79,38 +79,63 @@ const Diagnosis = ({userObj}) => {
       const onClearAttachment = () => setAttachment(null);
     return (
     <div>
-        <form onSubmit={onSubmit}>
-            <input 
-                value={result} 
-                onChange={onChange} 
-                type="text" 
-                placeholder="Writing My Diagnosis" 
-                maxLength={120} 
+        <form onSubmit={onSubmit} className="diagnosisForm">
+                <div className="diagnosisInput__container">
+                <input 
+                    className="diagnosisInput__input"
+                    value={result} 
+                    onChange={onChange} 
+                    type="text" 
+                    placeholder="Writing My Diagnosis" 
+                    maxLength={1000} 
+                />
+                <input 
+                    className="diagnosisInput__input"
+                    value={tag} 
+                    onChange={onChange2} 
+                    type="hash" 
+                    placeholder="Writing My Tag" 
+                    maxLength={90} 
+                />
+                <input 
+                    type="submit" 
+                    value="Upload" 
+                    className="diagnosisInput__arrow" 
+                />
+            </div>
+            <label for="attach-file" className="diagnosisInput__label">
+                <span>Add photos</span>
+                
+            </label>
+            <input
+                id="attach-file"
+                type="file"
+                accept="image/*"
+                onChange={onFileChange}
+                style={{ opacity: 0,}}
             />
-            <input 
-                value={tag} 
-                onChange={onChange2} 
-                type="hash" 
-                placeholder="Writing Tag" 
-                maxLength={90} 
-            />
-            <input type="file" accept="image/*" onChange={onFileChange} />
-            <input type="submit" value="Save" />
             {attachment && (
-                <div>
-                    <img src={attachment} width="50px" height="50px" />
-                    <button onClick={onClearAttachment}>Clear</button>
+                <div className="diagnosisForm__attachment">
+                    <img
+                        src={attachment}
+                        style={{
+                        backgroundImage: attachment,
+                        }}
+                    />
+                    <div className="diagnosisForm__clear" onClick={onClearAttachment}>
+                        <span>Clear</span>
+                    </div>
                 </div>
             )}
         </form>
         <div>
-            {tags.map((tag) => (
+            {results.map((result) => (
                 // result.js helps keep code short
                 // create result(diagnosis result) component
                 <Result
-                    key={tag.id}
-                    resultObj={tag}
-                    isOwner={tag.creatorId === userObj.uid} // userObj comes from props(given by Router) of Home
+                    key={result.id}
+                    resultObj={result}
+                    isOwner={result.creatorId === userObj.uid} // userObj comes from props(given by Router) of Home
                 />
             ))}
         </div>

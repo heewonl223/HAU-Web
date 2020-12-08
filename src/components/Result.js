@@ -4,11 +4,11 @@ import React, { useState } from "react";
 const Result = ({resultObj, isOwner}) => {
     const [editing, setEditing] = useState(false);  // for true false
     const [newResult, setNewResult] = useState(resultObj.text); // update text in input
-    const [newTag, setNewTag] = useState(resultObj.tag);
+    const [newTag, setNewTag] = useState(resultObj.hash);
     const onDeleteClick = async () => {
         const ok = window.confirm("Are you sure you want to delete this diagnosis?");
         if (ok) {
-            await dbService.doc(`results/${resultObj.id}`).delete();    // orange records == collection name
+            await dbService.doc(`results_list/${resultObj.id}`).delete();    
             await storageService.refFromURL(resultObj.attachmentUrl).delete();
         }
     };
@@ -34,32 +34,55 @@ const Result = ({resultObj, isOwner}) => {
         setNewTag(value);
     };
     return (
-        <div>
+        <div class ="result">
             {
                 editing ? (
                 <>
                     {isOwner && (
                         <>
-                            <form onSubmit={onSubmit}>
-                                <input type="text" placeholder="Edit your diagnosis result" value={newResult} required onChange={onChange} />
-                                <input type="hash" placeholder="Edit your tag" value={newTag} required onChange={onChange2} />
-                                <input type="submit" value="Update diagnosis result" />
+                            <form onSubmit={onSubmit} className="container resultEdit">
+                                <input 
+                                    type="text" 
+                                    placeholder="Edit your diagnosis result" 
+                                    value={newResult} 
+                                    required 
+                                    onChange={onChange}
+                                    className="result_formInput"
+                                />
+                                <input type="hash"
+                                    placeholder="Edit your tag"
+                                    value={newTag}
+                                    required
+                                    onChange={onChange2}
+                                    className="result_formInput"
+                                />
+                                <input 
+                                    type="submit" 
+                                    value="Update diagnosis result"
+                                    className="editUpdateBtn" 
+                                />
                             </form>
-                            <button onClick={toggleEditing}>Cancel</button>
-                        </> 
+                            <button onClick={toggleEditing} className="editUpdateBtn editCancelBtn">
+                                Cancel
+                            </button>
+                        </>
                     )}
                 </>
                 ) : (
                 <>
-                    <h4>{resultObj.text}</h4>
-                    <h4>{resultObj.hash}</h4>
-                    {resultObj.attachmentUrl && (
-                        <img src={resultObj.attachmentUrl} width="50px" height="50px" />
+                    {isOwner && (
+                        <>
+                        <h4>Diagnosis:{resultObj.text}</h4>
+                        <h4>Tag:{resultObj.hash}</h4>
+                        {resultObj.attachmentUrl && (
+                            <img src={resultObj.attachmentUrl} />
+                        )}
+                        </>
                     )}
                     {isOwner && (
                     <>
-                        <button onClick={onDeleteClick}>Delete diagnosis result</button>
-                        <button onClick={toggleEditing}>Edit diagnosis result</button>
+                        <button onClick={toggleEditing} className ="result_editBtn">Edit diagnosis result</button>
+                        <button onClick={onDeleteClick} className ="result_deleteBtn">Delete diagnosis result</button>
                     </>
                     )}
                 </>

@@ -5,8 +5,7 @@ import Dailylog from "components/Dailylog";
 import Navigation from "components/Navigation";
 import Profile from "routes/Profile";
 import Diagnosis from "components/Diagnosis";
-import Logo from 'components/reallogo.png';
-//import Search from "routes/Search";
+import Search from "components/Search";
 
 const AppRouter = ({isLoggedIn, userObj}) => {
     return (
@@ -24,7 +23,9 @@ const AppRouter = ({isLoggedIn, userObj}) => {
                         <Route exact path="/profile">
                             <Profile />
                         </Route>
-                        <Redirect from="*" to="/profile" />
+                        <Route exact path="/search">
+                            <Search />
+                        </Route>
                     </> 
                 ) : (
                     <>
@@ -34,7 +35,7 @@ const AppRouter = ({isLoggedIn, userObj}) => {
                     <Route exact path="/profile">
                         <Auth />
                     </Route>
-                    <Redirect from="*" to="/profile" />
+                    <Redirect from="*" to="/" />
                     </>
                 )}
             </Switch>

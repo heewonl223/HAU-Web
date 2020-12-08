@@ -49,13 +49,32 @@ const Dailylog = ({userObj}) => {
             target: {value},
         } = event;
         setTag(value);
-    };
+    }; 
+    console.log(record);
     return (
     <div>
-        <form onSubmit={onSubmit}>
-            <input value={record} onChange={onChange} type="text" placeholder="Writing My Daily Log" maxLength={120} />
-            <input value={tag} onChange={onChange2} type="hash" placeholder="Writing My Tag" maxLength={90} />
-            <input type="submit" value="Save" />
+        <form onSubmit={onSubmit} className="dailylogForm">
+            <div className="dailylogInput__container">
+            <textarea rows="4" cols="50"
+                className="dailylogInput__input"
+                value={record} 
+                onChange={onChange} 
+                type="text" 
+                placeholder="Writing My Daily Log"
+                maxLength={1000} 
+            />
+            <input value={tag}
+                className="dailylogInput__input"
+                onChange={onChange2}
+                type="hash"
+                placeholder="Writing My Tag"
+                maxLength={90} />
+            <input 
+                type="submit" 
+                value="Upload" 
+                className="dailylogInput__arrow"
+            />
+            </div>
         </form>
         <div>
             {tags.map((tag) => (

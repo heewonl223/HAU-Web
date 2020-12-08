@@ -2,8 +2,7 @@
 import React, { useEffect, useState } from "react";
 import AppRouter from "components/Router";
 import { authService } from "fbase";
-import '../HowAboutU.css'
-import Footer from "./Footer";
+import '../HowAboutU.css';
 
 function App() {
   const [init, setInit] = useState(false);
@@ -22,16 +21,15 @@ function App() {
     });
   }, []);
   return (
-    <div id="wrapper">
-      {init ? (<AppRouter isLoggedIn={isLoggedIn} userObj={userObj} /> 
-      ) : (
-        <>
-        "Initializing...",
-        "Welcome! :)"
-        </> 
-      )}
-      <footer>Health Assistant</footer>
+  <>
+  <div id ="wrapper">
+    {init ? (<AppRouter isLoggedIn={isLoggedIn} userObj={userObj} /> 
+    ) : (
+      "Initializing..." 
+    )}
+    <footer>Health Assistant</footer>
     </div>
+    </>
   );
 }
 

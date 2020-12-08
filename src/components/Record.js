@@ -14,6 +14,7 @@ const Record = ({recordObj, isOwner}) => {
     const toggleEditing = () => setEditing((prev) => !prev);
     const onSubmit = async (event) =>  {
         event.preventDefault();
+        console.log(recordObj, newRecord);
         await dbService.doc(`records_list/${recordObj.id}`).update({
             text: newRecord,
             hash: newTag,
@@ -33,7 +34,7 @@ const Record = ({recordObj, isOwner}) => {
         setNewTag(value);
     };
     return (
-        <div class="record">
+        <div class ="record">
             {
                 editing ? (
                 <>
@@ -68,13 +69,17 @@ const Record = ({recordObj, isOwner}) => {
                 </>
                 ) : (
                 <>
-                    <h4>{recordObj.text}</h4>
-                    <h4>{recordObj.hash}</h4>
                     {isOwner && (
-                        <div>
-                            <button onClick={toggleEditing} className ="record_editBtn">Edit Log</button>
-                            <button onClick={onDeleteClick} className ="record_deleteBtn">Delete Log</button>
-                        </div>
+                    <>
+                        <h4>Log:{recordObj.text}</h4>
+                        <h4>Tag:{recordObj.hash}</h4>
+                    </>
+                    )}
+                    {isOwner && (
+                    <div>
+                        <button onClick={toggleEditing} className ="record_editBtn">Edit Log</button>
+                        <button onClick={onDeleteClick} className ="record_deleteBtn">Delete Log</button>
+                    </div>
                     )}
                 </>
                 )}
