@@ -1,13 +1,17 @@
 import React, {useEffect, useState} from "react";
-import { dbService } from "fbase";
+import { v4 as uuidv4 } from "uuid";
+import { dbService, storageService } from "fbase";
 import Result from "components/Result";
 
 const Diagnosis = ({userObj}) => {
     const [result, setResult] = useState("");
     const [results, setResults] = useState([]);
+    const [attachment, setAttachment] = useState("");
     useEffect(() => {
         // snapshot : any change in database -> alert
-        dbService.collection("results").onSnapshot((snapshot) => {
+        dbService.collection("results_list")
+        .orderBy("createdAt", "desc")
+        .onSnapshot((snapshot) => {
             const resultArray = snapshot.docs.map(doc => ({
                 // every item on array will look like this
                 id:doc.id,
@@ -18,13 +22,26 @@ const Diagnosis = ({userObj}) => {
     }, []);
     const onSubmit = async (event) => {
         event.preventDefault();
-        await dbService.collection("results").add({
+        if (result === "") {
+            return;
+        }
+        let attachmentUrl = "";
+        if (attachment !== ""){
+            const attachmentRef = storageService
+                .ref()
+                .child(`${userObj.uid}/${uuidv4()}`);
+            const response = await attachmentRef.putString(attachment, "data_url");
+            attachmentUrl = await response.ref.getDownloadURL();
+        }
+        const resultObj = {
             text: result,
             createdAt: Date.now(),
             creatorId: userObj.uid,
-        });
-        // submit(save) 이후 빈칸 만들기
-        setResult("");
+            attachmentUrl,
+        }; 
+        await dbService.collection("results_list").add(resultObj);
+            setResult("");
+            setAttachment("");
     };
     const onChange = (event) => {
         const {
@@ -32,17 +49,71 @@ const Diagnosis = ({userObj}) => {
         } = event;
         setResult(value);
     };
-    console.log(results);
+    const onFileChange = (event) => {
+        const {
+          target: { files },
+        } = event;
+        const theFile = files[0];
+        const reader = new FileReader();
+        reader.onloadend = (finishedEvent) => {
+          const {
+            currentTarget: { result },
+          } = finishedEvent;
+          setAttachment(result);
+        };
+        reader.readAsDataURL(theFile);
+      };
+      const onClearAttachment = () => setAttachment(null);
     return (
     <div>
-        <form onSubmit={onSubmit}>
-            <input value={result} onChange={onChange} type="text" placeholder="Upload Diagnosis" maxLength={120} />
-            <input type="submit" value="Upload" />
+        <form onSubmit={onSubmit} className="diagnosisForm">
+                <div className="diagnosisInput__container">
+                <input 
+                    className="diagnosisInput__input"
+                    value={result} 
+                    onChange={onChange} 
+                    type="text" 
+                    placeholder="Writing My Daily Log" 
+                    maxLength={1000} 
+                />
+                <input 
+                    type="submit" 
+                    value="Upload" 
+                    className="diagnosisInput__arrow" 
+                />
+            </div>
+            <label for="attach-file" className="diagnosisInput__label">
+                <span>Add photos</span>
+                
+            </label>
+            <input
+                id="attach-file"
+                type="file"
+                accept="image/*"
+                onChange={onFileChange}
+                style={{
+                opacity: 0,
+                }}
+            />
+
+            {attachment && (
+                <div className="diagnosisForm__attachment">
+                    <img
+                        src={attachment}
+                        style={{
+                        backgroundImage: attachment,
+                        }}
+                    />
+                    <div className="diagnosisForm__clear" onClick={onClearAttachment}>
+                        <span>Clear</span>
+                    </div>
+                </div>
+            )}
         </form>
         <div>
             {results.map((result) => (
-                // record.js helps keep code short
-                // create record(daily log) component
+                // result.js helps keep code short
+                // create result(diagnosis result) component
                 <Result
                     key={result.id}
                     resultObj={result}
