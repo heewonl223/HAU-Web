@@ -57,6 +57,7 @@ const toggleAccount = () => setNewAccount((prev) => !prev);
                 className="authInput"
                 onChange={onChange}
             />
+            
             <input 
                 type="submit" 
                 className="authInput authSubmit"

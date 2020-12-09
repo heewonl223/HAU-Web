@@ -5,7 +5,9 @@ export default () => {
     const onLogOutClick = () => authService.signOut();
     return (
         <form>
-            <button onClick={onLogOutClick}>Log Out</button>
+            <button onClick={onLogOutClick} className ="logSubmit logout">
+                Log Out
+            </button>
         </form>
     );
 };
