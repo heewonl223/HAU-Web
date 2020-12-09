@@ -92,9 +92,9 @@ const Record = ({recordObj, isOwner}) => {
                 </>
                 ) : (
                 <>
-                    <h4>{recordObj.text}</h4>
-                    <h4>{recordObj.hash}</h4>
-                    <h4>{recordObj.part}:{recordObj.degree}</h4>
+                    <div>{recordObj.text}</div>
+                    <div>{recordObj.hash}</div>
+                    <div>{recordObj.part}:{recordObj.degree}</div>
                     {isOwner && (
                         <div>
                             <button onClick={toggleEditing} className ="record_editBtn">Edit Log</button>
