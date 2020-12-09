@@ -22,11 +22,10 @@ function App() {
     });
   }, []);
   return (
-    <div id="wrapper">
+    <div id="init">
       {init ? (<AppRouter isLoggedIn={isLoggedIn} userObj={userObj} /> 
       ) : (
         <>
-        "Initializing...",
         "Welcome! :)"
         </> 
       )}
