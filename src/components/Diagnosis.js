@@ -6,23 +6,30 @@ import Result from "components/Result";
 const Diagnosis = ({userObj}) => {
     const [result, setResult] = useState("");
     const [results, setResults] = useState([]);
+    const [tag, setTag] = useState("");
+    const [tags, setTags] = useState([]); // view log
     const [attachment, setAttachment] = useState("");
     useEffect(() => {
         // snapshot : any change in database -> alert
-        dbService.collection("results").onSnapshot((snapshot) => {
+        dbService.collection("results_list")
+        .orderBy("createdAt", "desc")
+        .onSnapshot((snapshot) => {
             const resultArray = snapshot.docs.map(doc => ({
                 // every item on array will look like this
                 id:doc.id,
                 ...doc.data(),
             }));
             setResults(resultArray);
+            const tagArray = snapshot.docs.map(doc => ({
+                // every item on array will look like this
+                id:doc.id,
+                ...doc.data(),
+            }));
+            setTags(tagArray);
         });
     }, []);
     const onSubmit = async (event) => {
         event.preventDefault();
-        if (result === "") {
-            return;
-        }
         let attachmentUrl = "";
         if (attachment !== ""){
             const attachmentRef = storageService
@@ -33,12 +40,14 @@ const Diagnosis = ({userObj}) => {
         }
         const resultObj = {
             text: result,
+            hash: tag,
             createdAt: Date.now(),
             creatorId: userObj.uid,
             attachmentUrl,
         }; 
-        await dbService.collection("results").add(resultObj);
+        await dbService.collection("results_list").add(resultObj);
             setResult("");
+            setTag("");
             setAttachment("");
     };
     const onChange = (event) => {
@@ -46,6 +55,12 @@ const Diagnosis = ({userObj}) => {
             target: {value},
         } = event;
         setResult(value);
+    };
+    const onChange2 = (event) => {
+        const {
+            target: {value},
+        } = event;
+        setTag(value);
     };
     const onFileChange = (event) => {
         const {
@@ -75,6 +90,14 @@ const Diagnosis = ({userObj}) => {
                     maxLength={1000} 
                 />
                 <input 
+                    className="diagnosisInput__input"
+                    value={tag} 
+                    onChange={onChange2} 
+                    type="hash" 
+                    placeholder="Writing My Tag" 
+                    maxLength={90} 
+                />
+                <input 
                     type="submit" 
                     value="Upload" 
                     className="diagnosisInput__arrow" 
@@ -89,11 +112,8 @@ const Diagnosis = ({userObj}) => {
                 type="file"
                 accept="image/*"
                 onChange={onFileChange}
-                style={{
-                opacity: 0,
-                }}
+                style={{ opacity: 0,}}
             />
-
             {attachment && (
                 <div className="diagnosisForm__attachment">
                     <img

@@ -21,6 +21,9 @@ const Navigation = () => (<nav>
         <li>
             <Link id = "Nav1" to ="/diagnosis"> Diagnosis Result </Link>
         </li>
+        <li>   
+            <Link id = "Nav1" to ="/search"> Search </Link>
+        </li>
     </ul>
     </nav>
 
