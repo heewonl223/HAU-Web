@@ -81,7 +81,6 @@ a:hover {text-decoration: none; font-weight: bold; color: #000000;}
 }
 
 #Title{
-
   padding-top: 69px;
   padding-bottom: 40px;
   font-size: 58px;
@@ -104,12 +103,12 @@ a:hover {text-decoration: none; font-weight: bold; color: #000000;}
   border-bottom:5px solid #d9d9d9; 
 }
 
+
 /*Navigation.js end*/
 
  /*Footer.js*/
 
  .footer {
-
     position:fixed;
     left:0px;
     bottom:0;
@@ -388,7 +387,6 @@ form{
 
 .result__actions span:first-child {
   margin-right: 10px;
-
 }
 /* Result.js end*/
 
@@ -419,3 +417,27 @@ form{
 }
 
 /* Profile.js end */
+
+/* Select.js */
+
+#search_input{
+  width:1000px;
+  padding-top : 30px;
+  margin: 10px auto;
+  text-align: center;
+  font-size: 30px;
+  font-family: "Consolas";
+  margin-right : 800px;
+  display:block;
+  color:#ffffff;
+
+}
+
+#select_tag{
+  text-align: left;
+  font-size: 30px;
+  font-family: "Consolas";
+}
+
+/* Select.js end */
+
