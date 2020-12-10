@@ -15,7 +15,6 @@ const Result = ({resultObj, isOwner}) => {
     const toggleEditing = () => setEditing((prev) => !prev);
     const onSubmit = async (event) =>  {
         event.preventDefault();
-        console.log(resultObj, newResult);
         await dbService.doc(`results_list/${resultObj.id}`).update({
             text: newResult,
             hash: newTag,

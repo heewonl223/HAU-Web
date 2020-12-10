@@ -17,7 +17,6 @@ const Record = ({recordObj, isOwner}) => {
     const toggleEditing = () => setEditing((prev) => !prev);
     const onSubmit = async (event) =>  {
         event.preventDefault();
-        console.log(recordObj, newRecord);
         await dbService.doc(`records_list/${recordObj.id}`).update({
             text: newRecord,
             hash: newTag,

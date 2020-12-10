@@ -5,8 +5,8 @@ import Dailylog from "components/Dailylog";
 import Navigation from "components/Navigation";
 import Profile from "routes/Profile";
 import Diagnosis from "components/Diagnosis";
-import Search from "components/Search";
 import Logo from 'components/reallogo.png';
+import Search from "components/Search";
 
 let text = ["this is text with breakdown",
                         <br/>,
