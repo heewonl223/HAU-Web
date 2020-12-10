@@ -30,6 +30,9 @@ const Diagnosis = ({userObj}) => {
     }, []);
     const onSubmit = async (event) => {
         event.preventDefault();
+        if (result === "") {
+            return;
+        }
         let attachmentUrl = "";
         if (attachment !== ""){
             const attachmentRef = storageService

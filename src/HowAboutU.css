@@ -81,6 +81,7 @@ a:hover {text-decoration: none; font-weight: bold; color: #000000;}
 }
 
 #Title{
+
   padding-top: 69px;
   padding-bottom: 40px;
   font-size: 58px;
@@ -387,6 +388,7 @@ form{
 
 .result__actions span:first-child {
   margin-right: 10px;
+
 }
 /* Result.js end*/
 
