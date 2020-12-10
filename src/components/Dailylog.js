@@ -73,7 +73,7 @@ const Dailylog = ({userObj}) => {
     <div>
         <form onSubmit={onSubmit}>
             <div>
-                <input value={bodyPart} onChange={onChange3} type="bodyPart" placeholder="어디가 아프신감?" maxLength={10}/>
+                <input value={bodyPart} onChange={onChange3} type="bodyPart" placeholder="어디가 아프신가요?" maxLength={10}/>
                 <span onClick={()=>{if (painDegree>0)setpainDegree(painDegree-1)}}>😊</span>
                 <span>{painDegree}</span>
                 <span onClick={()=>{if (painDegree<10)setpainDegree(painDegree+1)}}>😷</span>

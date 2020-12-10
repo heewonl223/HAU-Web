@@ -70,7 +70,7 @@ const Record = ({recordObj, isOwner}) => {
                                 <div>
                                     <input 
                                         type="part"
-                                        placeholder="어디가 아프신감?"
+                                        placeholder="어디가 아프신가요?"
                                         value={newPart} 
                                         required 
                                         onChange={onChange3} 
