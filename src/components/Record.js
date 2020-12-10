@@ -50,6 +50,7 @@ const Record = ({recordObj, isOwner}) => {
                 <>
                     {isOwner && (
                         <>
+                        <div>{recordObj.createdAt}</div>
                             <form onSubmit={onSubmit} className="container recordEdit">
                                 <input 
                                     type="text" 
@@ -91,7 +92,9 @@ const Record = ({recordObj, isOwner}) => {
                     )}
                 </>
                 ) : (
+                    
                 <>
+                    <div>{recordObj.createdAt}</div>
                     <div>{recordObj.text}</div>
                     <div>{recordObj.hash}</div>
                     <div>{recordObj.part}:{recordObj.degree}</div>

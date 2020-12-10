@@ -1,7 +1,26 @@
 import React, {useEffect, useState} from "react";
 import { dbService } from "fbase";
 import Record from "components/Record";
-import PainGraph from "components/PainGraph";
+import PainGraph  from "components/PainGraph";
+
+
+// 보기좋은 시간 반환 함수
+Date.prototype.yyyymmdd = function() {
+    let MM = this.getMonth() + 1; // getMonth() is zero-based
+    let dd = this.getDate();
+    let hh = this.getHours();
+    let mm = this.getMinutes();
+    let ss = this.getSeconds();
+  
+    return [this.getFullYear(),'.',
+            (MM>9 ? '' : '0') + MM,'.',
+            (dd>9 ? '' : '0') + dd,'@',,
+            (hh>9 ? '' : '0') + hh,':',
+            (MM>9 ? '' : '0') + MM,':',
+            (ss>9 ? '' : '0') + ss
+           ].join('');
+  };
+
 
 const Dailylog = ({userObj}) => {
     const [record, setRecord] = useState("");
@@ -34,12 +53,14 @@ const Dailylog = ({userObj}) => {
 
         });
     }, []);
+
     const onSubmit = async (event) => {
         event.preventDefault();
+        var date = new Date();
         await dbService.collection("records_list").add({
             text: record,
             hash: tag,
-            createdAt: Date.now(),
+            createdAt: date.yyyymmdd(),
             creatorId: userObj.uid,
             part: bodyPart,
             degree: painDegree
