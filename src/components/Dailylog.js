@@ -108,8 +108,6 @@ const Dailylog = ({userObj}) => {
         <div>
             <PainGraph userObj={userObj}/>
             {tags.map((tag) => (
-                // record.js helps keep code short
-                // create record(daily log) component
                 <Record
                     key={tag.id}
                     recordObj={tag}

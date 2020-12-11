@@ -1,5 +1,5 @@
 import {dbService} from "fbase";
-import React, { useCallback, useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 import {Bar} from "react-chartjs-2";
 
 
@@ -28,14 +28,17 @@ const graphoptions={
 }
 //////////////////////////////////////////////////////////////////
 
-const PainGraph=({userObj})=>{
 
-    //const [barData,setBarData]=useState([]);
+const PainGraph=({userObj})=>{
     const [dataDate,setDataDate]=useState([0]);
     const [partNames,setPartNames]=useState([""]);
     const [degreeData,setDegreeData]=useState([0]);
+    const [nameList,setNameList]=useState([""]);
 
-    const fetchData=()=>{
+    const [painpart,setPainpart]=useState("");
+
+    // 그래프 데이터 업데이트 함수
+    const fetchData=(selectName)=>{
         setPartNames([]);
         setDegreeData([]);
         setDataDate([]);
@@ -48,32 +51,62 @@ const PainGraph=({userObj})=>{
         .get()      //상위 컬렉션의 모든 다큐먼트를 갖는 promise 반환
         .then((docs)=>{
             //forEach함수로 각각의 다큐먼트에대해 함수 실행(map이랑 동일한듯..?)
+            setPainpart("");
             docs.forEach((doc)=>{
                 if(doc.data().creatorId===userObj.uid){
                     datumDate.push(doc.data().createdAt);
                     partName.push(doc.data().part);
                     degreeDatum.push(doc.data().degree);
                 }
-                
             });
+            setNameList(Array.from(new Set(partName)));
+
+            if (selectName!==""){
+                setPainpart(selectName);
+                datumDate=[]; degreeDatum=[]; partName=[];
+                docs.forEach((doc)=>{
+                    if(doc.data().creatorId===userObj.uid){
+                        if(doc.data().part===selectName){
+                        
+                        partName.push(doc.data().createdAt);
+                        degreeDatum.push(doc.data().degree);
+                    }
+                    }
+                });
+            }
             //받아온 데이터 barData state에 추가
             setDataDate((dataDate)=>dataDate.concat(datumDate));
             setPartNames((partNames)=>partNames.concat(partName));
-            setDegreeData((degreeData)=>degreeData.concat(degreeDatum));
+            setDegreeData((degreeData)=>degreeData.concat(degreeDatum));  
         })
     }
-
+  
     
-    /*최초 렌더링 이후에 실행하기 위해 useEffect 내부에서 함수 실행
-    이부분이 데이터변화에 따라서 자동업데이트 되고 그런 부분인데
-    일단 좀 더 공부가 필요할 듯 하여.... 이거 풀면 렉먹어요 뭔가
-    무한 업데이트 되는 듯
+   
+/* ----------------------------------------------------------
+    안 쓸 것같은데 혹시 몰라서 뒀습니다.. 최종 업데이트 할 때 지울게요
+    useEffect(() => {
+        // snapshot : any change in database -> alert
+        dbService.collection("records_list")
+        .orderBy("createdAt", "desc")
+        .onSnapshot((snapshot) => {
+            const nameArray = snapshot.docs.map((doc) => ({
+                // every item on array will look like this
+                id: doc.data().creator,
+                name : doc.data().part
+                
+            }));
+                        
+            setNameList(new Set(nameArray));
+        });
+    }, []);
+---------------------------------------------------------------*/
+
+
+    // 최초 렌더링 시 fetchData 한 번 실행
     useEffect(()=>{
-        fetchData();
-    }, [fetchData]);
-    */
-
-
+        fetchData('');
+    }, []);
 
     const graphdata={
         //각 막대별 라벨
@@ -82,26 +115,28 @@ const PainGraph=({userObj})=>{
             {
                 borderWidth:1,  //테두리 두께
                 data: degreeData, // 수치,,?
-                backgroundColor:'blue'   //막대 색
+                backgroundColor:'skyblue'
     
             }
         ]
     };
 
     return (
-        <div style={{width:1000}}>
+        <div style={{width:300}}>
+            <div>{painpart}</div>
             <Bar
                 data={graphdata}
                 options={graphoptions}
                 height={300}
             />
             <button //이건....만약 자동동기화가 안되면 수동 동기화를 해야하기 때문에....일단..... 
-                onClick={()=>{fetchData()}}>데이터가져오깅</button>
-            <button //이건 테스트용 버튼이라 나중에 삭제할거예욤
-                onClick={()=>{console.log(dataDate)}}>욥</button>
+                onClick={()=>{fetchData('')}}>Update</button>
+            {nameList.map((name)=> (
+                <button onClick={()=>fetchData(name)}>{name}</button>
+            ))}           
+            
         </div>
     );
 }
-
 
 export default PainGraph
