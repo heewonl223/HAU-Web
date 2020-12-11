@@ -35,7 +35,7 @@ const PainGraph=({userObj})=>{
     const [degreeData,setDegreeData]=useState([0]);
     const [nameList,setNameList]=useState([""]);
 
-    const [painpart,setPainpart]=useState("");
+    const [painpart,setPainpart]=useState("My PainGraph");
 
     // 그래프 데이터 업데이트 함수
     const fetchData=(selectName)=>{
@@ -51,7 +51,7 @@ const PainGraph=({userObj})=>{
         .get()      //상위 컬렉션의 모든 다큐먼트를 갖는 promise 반환
         .then((docs)=>{
             //forEach함수로 각각의 다큐먼트에대해 함수 실행(map이랑 동일한듯..?)
-            setPainpart("");
+            setPainpart("My PainGraph");
             docs.forEach((doc)=>{
                 if(doc.data().creatorId===userObj.uid){
                     datumDate.push(doc.data().createdAt);
@@ -122,12 +122,13 @@ const PainGraph=({userObj})=>{
     };
 
     return (
-        <div style={{width:300}}>
+        <div style={{width:500}}>
             <div>{painpart}</div>
             <Bar
                 data={graphdata}
                 options={graphoptions}
                 height={300}
+                width={500}
             />
             <button //이건....만약 자동동기화가 안되면 수동 동기화를 해야하기 때문에....일단..... 
                 onClick={()=>{fetchData('')}}>Update</button>
