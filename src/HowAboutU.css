@@ -420,7 +420,7 @@ form{
 
 /* Select.js */
 
-#search_input{
+#search_temp{
   width:1000px;
   padding-top : 30px;
   margin: 10px auto;
@@ -430,7 +430,17 @@ form{
   margin-right : 800px;
   display:block;
   color:#ffffff;
+}
 
+#search_input{
+  width:1000px;
+  margin: 10px auto;
+  text-align: center;
+  font-size: 30px;
+  font-family: "Consolas";
+  margin-right : 800px;
+  display:block;
+  color:#808080;
 }
 
 #select_tag{
