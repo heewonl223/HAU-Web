@@ -46,9 +46,11 @@ class Search extends Component {
     render() {
     return (
         <div>
+            <div id = "search_temp">
+            :)
+            </div>
 
             <div id = "search_input" >
-                :)
             <AsyncSelect
                 loadOptions={this.loadOptions}
                 onChange={this.handleOnChange}
