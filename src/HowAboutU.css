@@ -2,7 +2,6 @@
 
 
 /*App.js*/
-
 #init{
   width: 1800px;
   margin: 15px auto;
@@ -63,11 +62,10 @@ a:hover {text-decoration: none; font-weight: bold; color: #000000;}
 .App {
     text-align: center;
 }
-
 /*App.js end*/
 
-/*Navigation.js*/
 
+/*Navigation.js*/
 #Nav_img{
   padding-top: 55px;
   padding-bottom: 11px;
@@ -107,7 +105,6 @@ a:hover {text-decoration: none; font-weight: bold; color: #000000;}
 
 
  /*Footer.js*/
-
  .footer {
     position:block;
     left:0px;
@@ -122,6 +119,7 @@ a:hover {text-decoration: none; font-weight: bold; color: #000000;}
     color:#888
 }
  /*Footer.js end*/
+
 
  /* Auth.js */
  .authcontainer {
@@ -183,8 +181,7 @@ a:hover {text-decoration: none; font-weight: bold; color: #000000;}
   justify-content: center;
   align-items: center; 
 }
-
-  /* Auth.js end */
+ /* Auth.js end */
 
 
 box{
@@ -415,7 +412,8 @@ textarea{
     flex-wrap: wrap;
     position: relative;
     margin-bottom: 20px;
-    width: 100%;
+    margin-top: 30px;
+    width: 90%;
 }
   
 .diagnosisInput__input {
@@ -423,7 +421,7 @@ textarea{
     height: 40px;
     padding: 0px 20px;
     color: black;
-    border: 1px solid #04aaff;
+    border: 5px solid #04aaff;
     border-radius: 20px;
     font-weight: 500;
     font-size: 20px;
@@ -433,8 +431,8 @@ textarea{
     position: absolute;
     right: 0;
     background-color: #04aaff;
-    height: 40px;
-    width: 80px;
+    height: 50px;
+    width: 90px;
     padding: 10px 0px;
     text-align: center;
     border-radius: 20px;
