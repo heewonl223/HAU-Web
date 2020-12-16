@@ -89,7 +89,7 @@ const Diagnosis = ({userObj}) => {
                     value={result} 
                     onChange={onChange} 
                     type="text" 
-                    placeholder="Writing My Daily Log" 
+                    placeholder="Writing My Diagnosis Result" 
                     maxLength={1000} 
                 />
                 <input 
@@ -108,7 +108,6 @@ const Diagnosis = ({userObj}) => {
             </div>
             <label for="attach-file" className="diagnosisInput__label">
                 <span>Add photos</span>
-                
             </label>
             <input
                 id="attach-file"
