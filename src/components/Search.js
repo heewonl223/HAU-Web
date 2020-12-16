@@ -1,4 +1,4 @@
-import React, { Component} from "react";
+import React, { useState, Component} from "react";
 import { dbService } from "fbase";
 import AsyncSelect from 'react-select/async';
 
@@ -6,7 +6,7 @@ class Search extends Component {
     constructor(props) {
         super(props);
         this.state={
-            selectedTag: []
+            selectedTag: [],
         }
     }
     
@@ -25,9 +25,10 @@ class Search extends Component {
                                 const tag = {
                                     value: doc.id,
                                     text: doc.data().text,
-                                    label: doc.data().hash
+                                    label: doc.data().hash,
+                                    creatorId: doc.data().creatorId
                                 }
-                                recommendedTags.push(tag)
+                                recommendedTags.push(tag)   // search 창 내
                             });
                             return resolve(recommendedTags)
                         } else {
@@ -43,29 +44,57 @@ class Search extends Component {
             selectedTag: [tags]
         })
     }
+
     render() {
-    return (
-        <div>
-            <AsyncSelect
-                loadOptions={this.loadOptions}
-                onChange={this.handleOnChange}
-            />
-            <p>Selected Tag:</p>
-            {
-                this.state.selectedTag.map(e => {
-                    return (
-                        <>
-                        <li key={e.value}>
-                            {e.text}
-                            {e.label}
-                        </li>
-                        
-                        </>
-                    )
-                })
-            }
+        return (
+            <div>
+                <div id = "search_input" >
+                    :)
+                <AsyncSelect
+                    loadOptions={this.loadOptions}
+                    onChange={this.handleOnChange}
+                />
+                </div>
+            <>
+                <div id ="select_tag">
+                    <p>Result of My Daily Log</p>
+                    {
+                        this.state.selectedTag.map(e => {
+                            return (
+                                (e.creatorId === this.props.userObj.uid) && (
+                                <>
+                                {console.log(e.creatorId)}
+                                {console.log(this.props.userObj.uid)}
+                                <li key={e.value}>
+                                    {e.text}
+                                    {e.label}
+                                </li>
+                                </>
+                            ))
+                        })
+                    }
+                </div>
+                <div id ="select_tag">
+                    <p>Result of Others Daily Log</p>
+                    {
+                        this.state.selectedTag.map(e => {
+                            return (
+                                (e.creatorId !== this.props.userObj.uid) && (
+                                <>
+                                {console.log(e.creatorId)}
+                                {console.log(this.props.userObj.uid)}
+                                <li key={e.value}>
+                                    {e.text}
+                                    {e.label}
+                                </li>
+                                </>
+                            ))
+                        })
+                    }
+                </div>
+            </>
         </div>
-    );
+        );
     }
     
 };
