@@ -309,12 +309,12 @@ textarea{
     background-color: rgb(144, 175, 171);
     width: 100%;
     max-width: 700px;
-    padding-bottom: 20px;
+    padding: 0px 20px 20px 20px;
     border-radius: 10px;
-    /*display: flex;*/
     flex-direction: column;
     color: rgba(0, 0, 0, 0.8);
-    margin-left: 55
+    margin-left: 550px;
+}
 
 .record_formInput {
     width: 100%;
@@ -601,11 +601,10 @@ textarea{
   cursor: pointer;
   margin-left : 200px;
 }
-
 /* Profile.js end */
 
+    
 /* Select.js */
-
 #search_temp{
   width:1000px;
   padding-top : 30px;
@@ -634,7 +633,6 @@ textarea{
   font-size: 30px;
   font-family: "Consolas";
 }
-
 /* Select.js end */
 
 
