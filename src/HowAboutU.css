@@ -102,14 +102,14 @@ a:hover {text-decoration: none; font-weight: bold; color: #000000;}
   text-align: center;
   border-bottom:5px solid #d9d9d9; 
 }
-
-
 /*Navigation.js end*/
+
+
 
  /*Footer.js*/
 
  .footer {
-    position:fixed;
+    position:block;
     left:0px;
     bottom:0;
     width:100%;
@@ -124,7 +124,6 @@ a:hover {text-decoration: none; font-weight: bold; color: #000000;}
  /*Footer.js end*/
 
  /* Auth.js */
-
  .authcontainer {
   width: 500px;
   max-width: 320px;
@@ -134,7 +133,6 @@ a:hover {text-decoration: none; font-weight: bold; color: #000000;}
   padding-top : 0%;
   justify-content: center;
   align-items: center;
-
 }
 
 .authInput {
@@ -157,7 +155,6 @@ a:hover {text-decoration: none; font-weight: bold; color: #000000;}
   margin-top: 10px;
   box-sizing: content-box;
   cursor: pointer;
-
 }
 
 .authError {
@@ -208,68 +205,189 @@ form{
   text-align: right; 
 }
 
-/* Record.js */
-.container {
-  width: 100%;
-  max-width: 320px;
-  display: flex;
-  flex-direction: column;
+
+/* Dailylog.js*/
+textarea{
+    width:800px; 
+    height:200px; 
+    resize:none;  
+    -ms-overflow-style: none;
+    flex-grow: 1;
+    height: 40px;
+    padding: 20px 0px 300px 20px;
+    color: rgb(0, 0, 0);
+    border: 5px solid #04aaff;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 20px;
+    font-family: "input"
+}
+::-webkit-scrollbar { display: none; }
+
+.dailylogForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+  
+.dailylogInput__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+    margin-bottom: 20px;
+    margin-top: 30px;
 }
 
+.dailylogInput__input {
+    flex-grow: 1;
+    height: 40px;
+    padding: 20px 0px 300px 20px;
+    color: rgb(0, 0, 0);
+    border: 5px solid #04aaff;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 20px;
+}
+  
+.dailylogInput__arrow {
+    position: relative;
+    right: 0;
+    background-color: #04aaff;
+    height: 50px;
+    width: 100px;
+    padding: 10px 0px;
+    text-align: center;
+    border-radius: 20px;
+    color: white;
+    box-sizing: border-box;
+    margin-left: 250px;
+}
+  
+.dailylogInput__label {
+    color: #04aaff;
+    cursor: pointer;
+}
+  
+.dailylogInput__label span {
+    margin-right: 10px;
+    font-size: 12px;
+}
+
+.pain__input{
+  flex-grow: 1;
+  height: 40px;
+  padding: 0px 20px 0px 70px;
+  color: rgb(0, 0, 0);
+  border: 2px solid #04aaff;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 20px;
+}
+.pain span{
+  padding-left: 20px;
+}
+ /* Dailylog.js end*/
+
+
+
+/* Record.js */
+.record_container {
+  margin-top: 20px;
+  background-color: rgb(144, 175, 171);
+  width: 100%;
+  max-width: 700px;
+  padding: 20px;
+  border-radius: 10px;
+  /*display: flex;*/
+  flex-direction: column;
+  color: rgba(0, 0, 0, 0.8);
+  margin-left: 550px;
+  }
+
+  .record_BtnContainer{
+    margin-bottom: 20px;
+    background-color: rgb(144, 175, 171);
+    width: 100%;
+    max-width: 700px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    /*display: flex;*/
+    flex-direction: column;
+    color: rgba(0, 0, 0, 0.8);
+    margin-left: 55
 
 .record_formInput {
-  width: 100%;
-  padding: 20px 20px;
-  border-radius: 20px;
-  border: 1px solid black;
-  text-align: center;
-  background-color: white;
-  color: black;
+    width: 100%;
+    padding: 20px 20px;
+    border-radius: 20px;
+    border: 1px solid black;
+    text-align: center;
+    background-color: white;
+    color: black;
 }
 
 .record_editBtn {
-  width: 130px;
-  border-radius: 20px;
-  cursor: pointer;
-  background-color: #04aaff;
-  margin-left: 5px;
-  margin-top : 20px;
-  padding: 3px
-}
+    width: 130px;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: #04aaff;
+    margin-left: 5px;
+    margin-top : 20px;
+    padding: 3px
+  }
 
 .record_deleteBtn {
-  width: 130px;
-  border-radius: 20px;
-  cursor: pointer;
-  background-color: tomato;
-  margin-left: 5px;
-  padding: 3px
+    width: 130px;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: tomato;
+    margin-left: 5px;
+    padding: 3px
+}
+
+.recordEdit{
+  background-color: #175574;
+  justify-content: center;
 }
 
 .recordEdit .record_editBtn {
-  cursor: pointer;
-  margin-top: 15px;
-  margin-bottom: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    margin-bottom: 5px;
 }
-
+  
 .record {
-  margin-bottom: 20px;
-  background-color: rgb(178, 199, 178);
-  width: 100%;
-  max-width: 320px;
-  padding: 20px;
-  border-radius: 10px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 20px;
+    background-color: rgb(178, 199, 178);
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    color: rgba(0, 0, 0, 0.8);
 }
-
+  
 .record h4 {
-  font-size: 20px;
+    font-size: 20px;
 }
-
+  
 .editUpdateBtn {
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    padding: 7px 20px;
+    text-align: center;
+    color: white;
+    border-radius: 20px;
+    background-color: #04aaff;
+  }
+
+.editCancelBtn {
   cursor: pointer;
   width: 100%;
   margin-top: 10px;
@@ -277,16 +395,88 @@ form{
   text-align: center;
   color: white;
   border-radius: 20px;
-  background-color: #04aaff;
-  cursor: pointer;
-}
-
-.editCancelBtn {
-  cursor: pointer;
   background-color: tomato;
-}
+  }
 /* Record.js end*/
 
+    
+/* Diagnosis.js */
+.diagnosisForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+  
+.diagnosisInput__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%;
+}
+  
+.diagnosisInput__input {
+    flex-grow: 1;
+    height: 40px;
+    padding: 0px 20px;
+    color: black;
+    border: 1px solid #04aaff;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.diagnosisInput__arrow {
+    position: absolute;
+    right: 0;
+    background-color: #04aaff;
+    height: 40px;
+    width: 80px;
+    padding: 10px 0px;
+    text-align: center;
+    border-radius: 20px;
+    color: white;
+    box-sizing: border-box;
+}
+
+.diagnosisInput__label {
+    color: #04aaff;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.diagnosisInput__label span {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.diagnosisForm__attachment {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.diagnosisForm__attachment img {
+    width: 200px;
+    border-radius: 40px;
+}
+
+.diagnosisForm__clear {
+    color: #04aaff;
+    cursor: pointer;
+    text-align: center;
+}
+
+.diagnosisForm__clear span {
+    margin-right: 10px;
+    font-size: 20px;
+}
+/*Diagnosis.js end*/
+    
+    
 /* Result.js */
 .container {
   width: 100%;
@@ -294,7 +484,6 @@ form{
   display: flex;
   flex-direction: column;
 }
-
 
 .result_formInput {
   width: 100%;
@@ -392,7 +581,6 @@ form{
 
 
 /* Profile.js*/
-
 .logout {
   max-width: 320px;
   width: 500px;
@@ -450,4 +638,13 @@ form{
 }
 
 /* Select.js end */
+
+
+/* PainGraph.js */
+.painGraph{
+  width : 500px;
+  margin-top: 50px;
+  margin-left : 650px;
+}
+/* PainGraph.js end */
 
