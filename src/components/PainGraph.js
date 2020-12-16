@@ -53,7 +53,7 @@ const PainGraph=({userObj})=>{
             docs.forEach((doc)=>{
                 if(doc.data().creatorId===userObj.uid){
                     labelName.push(doc.data().part);
-                    partName.push(doc.data().createdAt.substring(0,10)+'\n\n\n\n\n'+doc.data().part);
+                    partName.push(doc.data().createdAt.substring(2,12)+'\n\n\n\n\n'+doc.data().part);
                     degreeDatum.push(doc.data().degree);
                 }
             });
@@ -66,7 +66,7 @@ const PainGraph=({userObj})=>{
                     if(doc.data().creatorId===userObj.uid){
                         if(doc.data().part===selectName){
                         
-                        partName.push(doc.data().createdAt.substring(0,10));
+                        partName.push(doc.data().createdAt.substring(2,12));
                         degreeDatum.push(doc.data().degree);
                     }
                     }
