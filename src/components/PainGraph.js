@@ -122,7 +122,7 @@ const PainGraph=({userObj})=>{
     };
 
     return (
-        <div style={{width:500}}>
+        <div className="painGraph">
             <div>{painpart}</div>
             <Bar
                 data={graphdata}
@@ -131,9 +131,13 @@ const PainGraph=({userObj})=>{
                 width={500}
             />
             <button //이건....만약 자동동기화가 안되면 수동 동기화를 해야하기 때문에....일단..... 
-                onClick={()=>{fetchData('')}}>Update</button>
+                className="graph_updateBtn"
+                onClick={()=>{fetchData('')}}>Update
             {nameList.map((name)=> (
-                <button onClick={()=>fetchData(name)}>{name}</button>
+            <button 
+                className="graph_spotBtn"
+                onClick={()=>fetchData(name)}>{name}
+            </button>
             ))}           
             
         </div>
