@@ -50,7 +50,7 @@ const Record = ({recordObj, isOwner}) => {
                 <>
                     {isOwner && (
                         <>
-                            <form onSubmit={onSubmit} className="container recordEdit">
+                            <form onSubmit={onSubmit} className="record_container recordEdit">
                                 <input 
                                     type="text" 
                                     placeholder="Edit your log" 
@@ -70,7 +70,7 @@ const Record = ({recordObj, isOwner}) => {
                                 <div>
                                     <input 
                                         type="part"
-                                        placeholder="어디가 아프신감?"
+                                        placeholder="pain spot?"
                                         value={newPart} 
                                         required 
                                         onChange={onChange3} 
@@ -85,27 +85,39 @@ const Record = ({recordObj, isOwner}) => {
                                     value="Update daily log" 
                                     className="editUpdateBtn"
                                 />
+                                <input 
+                                    onClick={toggleEditing} 
+                                    className="editCancelBtn"
+                                    value="Cancel"
+                                />
                             </form>
-                            <button onClick={toggleEditing} className="editUpdateBtn editCancelBtn">Cancel</button>
                         </>
                     )}
                 </>
                 ) : (
-                <>
-                    {isOwner && (
-                        <div class="record">
-                            <div>{recordObj.text}</div>
-                            <div>{recordObj.hash}</div>
-                            <div>{recordObj.part}:{recordObj.degree}</div>
-                        </div>
-                    )}
-                    {isOwner && (
-                        <div>
-                            <button onClick={toggleEditing} className ="record_editBtn">Edit Log</button>
-                            <button onClick={onDeleteClick} className ="record_deleteBtn">Delete Log</button>
-                        </div>
-                    )}
-                </>
+                    <div>
+                        {isOwner && (
+                            <div className="record_container">
+                                <div>{recordObj.text}</div>
+                                <div>{recordObj.hash}</div>
+                                <div>{recordObj.part}:{recordObj.degree}</div>
+                            </div>
+                        )}
+                        {isOwner && (
+                            <div className="record_BtnContainer">
+                                <button 
+                                    onClick={toggleEditing} 
+                                    className ="record_editBtn">
+                                        Edit Log
+                                </button>
+                                <button 
+                                    onClick={onDeleteClick} 
+                                    className ="record_deleteBtn">
+                                        Delete Log
+                                    </button>
+                            </div>
+                        )}
+                    </div>
                 )}
         </div>
     );
