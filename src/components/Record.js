@@ -83,11 +83,11 @@ const Record = ({recordObj, isOwner}) => {
                                 <input 
                                     type="submit" 
                                     value="Update daily log" 
-                                    className="editUpdateBtn"
+                                    className="record_editUpdateBtn"
                                 />
                                 <input 
                                     onClick={toggleEditing} 
-                                    className="editCancelBtn"
+                                    className="record_editCancelBtn"
                                     value="Cancel"
                                 />
                             </form>
