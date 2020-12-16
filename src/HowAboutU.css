@@ -293,20 +293,21 @@ textarea{
 /* Record.js */
 .record_container {
   margin-top: 20px;
-  background-color: rgb(144, 175, 171);
+  background-color: #1188f865;
   width: 100%;
   max-width: 700px;
   padding: 20px;
   border-radius: 10px;
-  /*display: flex;*/
   flex-direction: column;
   color: rgba(0, 0, 0, 0.8);
   margin-left: 550px;
+  font-size: 30px;
+  line-height : 150%;
   }
 
   .record_BtnContainer{
     margin-bottom: 20px;
-    background-color: rgb(144, 175, 171);
+    background-color:  #1188f865;
     width: 100%;
     max-width: 700px;
     padding: 0px 20px 20px 20px;
@@ -318,7 +319,7 @@ textarea{
 
 .record_formInput {
     width: 100%;
-    padding: 20px 20px;
+    padding: 20px 0px 20px 0px;
     border-radius: 20px;
     border: 1px solid black;
     text-align: center;
@@ -330,7 +331,7 @@ textarea{
     width: 130px;
     border-radius: 20px;
     cursor: pointer;
-    background-color: #04aaff;
+    background-color: rgba(89, 71, 255, 0.267);
     margin-left: 5px;
     margin-top : 20px;
     padding: 3px
@@ -340,7 +341,7 @@ textarea{
     width: 130px;
     border-radius: 20px;
     cursor: pointer;
-    background-color: tomato;
+    background-color: rgba(71, 172, 255, 0.267);
     margin-left: 5px;
     padding: 3px
 }
@@ -356,43 +357,26 @@ textarea{
     margin-bottom: 5px;
 }
   
-.record {
-    margin-bottom: 20px;
-    background-color: rgb(178, 199, 178);
-    width: 100%;
-    max-width: 500px;
-    padding: 20px;
-    border-radius: 10px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    color: rgba(0, 0, 0, 0.8);
-}
-  
-.record h4 {
-    font-size: 20px;
-}
-  
-.editUpdateBtn {
-    cursor: pointer;
-    width: 100%;
-    margin-top: 10px;
-    padding: 7px 20px;
-    text-align: center;
-    color: white;
-    border-radius: 20px;
-    background-color: #04aaff;
+.record_editUpdateBtn {
+  cursor: pointer;
+  margin-top: 10px;
+  padding: 7px 40px;
+  color: white;
+  border-radius: 20px;
+  background-color: #04aaff;
+  cursor: pointer;
   }
 
-.editCancelBtn {
+.record_editCancelBtn {
   cursor: pointer;
-  width: 100%;
   margin-top: 10px;
-  padding: 7px 20px;
+  padding: 7px;
   text-align: center;
   color: white;
   border-radius: 20px;
   background-color: tomato;
+  cursor: pointer;
+  margin-left: 5px;
   }
 /* Record.js end*/
 
@@ -476,16 +460,38 @@ textarea{
     
     
 /* Result.js */
-.container {
-  width: 100%;
-  max-width: 320px;
-  display: flex;
-  flex-direction: column;
-}
+.result_container {
+    margin-top: 50px;
+    background-color: #1188f865;
+    width: 80%;
+    max-width: relative;
+    padding: 20px;
+    border-radius: 10px;
+    /*display: flex;*/
+    flex-direction: column;
+    position: relative;
+    color: rgba(0, 0, 0, 0.8);
+    margin-left: 150px;
+    font-size: 30px;
+    line-height : 150%;
+  }
+
+  .result_BtnContainer{
+    margin-bottom: 20px;
+    background-color: #1188f865;
+    width: 80%;
+    max-width: relative;
+    padding: 0px 20px 20px 20px;
+    border-radius: 10px;
+    /*display: flex;*/
+    flex-direction: column;
+    color: rgba(0, 0, 0, 0.8);
+    margin-left: 150px;
+  }
 
 .result_formInput {
-  width: 100%;
-  padding: 20px 20px;
+  width: 90%;
+  padding: 20px 0px 20px 0px;
   border-radius: 20px;
   border: 1px solid black;
   text-align: center;
@@ -494,22 +500,27 @@ textarea{
 }
 
 .result_editBtn {
-  width: 130px;
+  width: 170px;
   border-radius: 20px;
   cursor: pointer;
-  background-color: #04aaff;
+  background-color: rgba(89, 71, 255, 0.267);
   margin-left: 5px;
   margin-top : 20px;
   padding: 3px
 }
 
 .result_deleteBtn {
-  width: 130px;
+  width: 170px;
   border-radius: 20px;
   cursor: pointer;
-  background-color: tomato;
+  background-color: rgba(71, 172, 255, 0.267);
   margin-left: 5px;
   padding: 3px
+}
+
+.resultEdit{
+  background-color: #175574;
+  justify-content: center;
 }
 
 .resultEdit .result_editBtn {
@@ -519,7 +530,7 @@ textarea{
 }
 
 .result {
-  margin-bottom: 20px;
+  /*margin-bottom: 20px;
   background-color: rgb(178, 199, 178);
   width: 100%;
   max-width: relative;
@@ -529,38 +540,41 @@ textarea{
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: rgba(0, 0, 0, 0.8);
+  color: rgba(0, 0, 0, 0.8);*/
+}
+
+.result img {
+  position: relative;
+  width: 1000px;
+  padding: 50px 0px 0px 0px;
 }
 
 .result h4 {
   font-size: 20px;
 }
 
-.editUpdateBtn {
+.result_editUpdateBtn {
+    cursor: pointer;
+    margin-top: 10px;
+    padding: 7px 20px;
+    text-align: center;
+    color: white;
+    border-radius: 20px;
+    background-color: #04aaff;
+    cursor: pointer;
+  }
+
+.result_editCancelBtn {
   cursor: pointer;
-  width: 100%;
   margin-top: 10px;
   padding: 7px 20px;
   text-align: center;
   color: white;
   border-radius: 20px;
-  background-color: #04aaff;
-  cursor: pointer;
-}
-
-.editCancelBtn {
-  cursor: pointer;
   background-color: tomato;
-}
-
-.result img {
-  /*right: -10px;
-  top: 20px;*/
-  position: relative;
-  /*border-radius: 50%;*/
-  width: 1000px;
-  margin-top: 10px;
-}
+  cursor: pointer;
+  margin-left: 5px;
+  }
 
 .result__actions {
   position: absolute;
@@ -641,6 +655,26 @@ textarea{
   width : 500px;
   margin-top: 50px;
   margin-left : 650px;
+}
+
+.graph_updateBtn{
+  width: 80px;
+  border-radius: 20px;
+  cursor: pointer;,
+  background-color: rgba(25, 209, 255, 0.479);
+  margin-right: 20px;
+  margin-top : 20px;
+  padding: 4px;
+}
+
+.graph_spotBtn{
+  width: 60px;
+  border-radius: 20px;
+  cursor: pointer;
+  background-color: #fcf3dc7e;
+  margin-right: 5px;
+  margin-top : 20px;
+  padding: 2px;
 }
 /* PainGraph.js end */
 
