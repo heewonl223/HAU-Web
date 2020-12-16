@@ -44,12 +44,13 @@ const Record = ({recordObj, isOwner}) => {
         setNewPart(value);
     };
     return (
-        <div class="record">
+        <div>
             {
                 editing ? (
                 <>
                     {isOwner && (
                         <>
+                        <div>{recordObj.createdAt}</div>
                             <form onSubmit={onSubmit} className="container recordEdit">
                                 <input 
                                     type="text" 
@@ -70,7 +71,7 @@ const Record = ({recordObj, isOwner}) => {
                                 <div>
                                     <input 
                                         type="part"
-                                        placeholder="어디가 아프신가요?"
+                                        placeholder="어디가 아프신감?"
                                         value={newPart} 
                                         required 
                                         onChange={onChange3} 
@@ -91,10 +92,13 @@ const Record = ({recordObj, isOwner}) => {
                     )}
                 </>
                 ) : (
+                    
                 <>
-                    <div>{recordObj.text}</div>
-                    <div>{recordObj.hash}</div>
-                    <div>{recordObj.part}:{recordObj.degree}</div>
+                    <div>{recordObj.createdAt}</div>
+                    <br/>
+                    <div>📃 {recordObj.text}</div>
+                    <div>⭐ {recordObj.hash}</div>
+                    <div> {recordObj.part} : {recordObj.degree}</div>
                     {isOwner && (
                         <div>
                             <button onClick={toggleEditing} className ="record_editBtn">Edit Log</button>

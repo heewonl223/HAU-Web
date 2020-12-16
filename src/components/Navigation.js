@@ -9,7 +9,6 @@ const Navigation = () => (<nav>
             <Link id = "Nav_img" to ="/profile"> 
             <img
             src={Logo}
-            width='100'
             height='90'/> </Link>
         </li>
         <li>
