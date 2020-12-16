@@ -6,6 +6,7 @@ import Navigation from "components/Navigation";
 import Profile from "routes/Profile";
 import Diagnosis from "components/Diagnosis";
 import Logo from 'components/reallogo.png';
+import Search from "components/Search";
 
 let text = ["this is text with breakdown",
                         <br/>,
@@ -63,6 +64,9 @@ const AppRouter = ({isLoggedIn, userObj}) => {
                         <Route exact path="/diagnosis">
                             <Diagnosis userObj={userObj}/>
                         </Route>
+                        <Route exact path="/search">
+                            <Search />
+                        </Route>
                     </> 
                 ) : (
                     <>
@@ -106,6 +110,11 @@ const AppRouter = ({isLoggedIn, userObj}) => {
                         <div id = "layout">
                             <Auth />
                         </div>                    
+                    </Route>
+                    <Route exact path="/search">
+                        <div id = "layout">
+                            <Auth />
+                        </div>
                     </Route>
                     <Redirect from="*" to="/" />
                     </>

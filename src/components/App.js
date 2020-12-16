@@ -22,14 +22,14 @@ function App() {
     });
   }, []);
   return (
-    <div id="init">
-      {init ? (<AppRouter isLoggedIn={isLoggedIn} userObj={userObj} /> 
-      ) : (
-        <>
-        "Welcome! :)"
-        </> 
-      )}
-      <Footer/>
+  
+  <div id="init">
+    {init ? (<AppRouter isLoggedIn={isLoggedIn} userObj={userObj} /> 
+    ) : (
+      "Welcome! :)" 
+    )}
+
+    <Footer/>
     </div>
   );
 }

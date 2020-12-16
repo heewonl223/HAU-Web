@@ -44,7 +44,7 @@ const Record = ({recordObj, isOwner}) => {
         setNewPart(value);
     };
     return (
-        <div class="record">
+        <div>
             {
                 editing ? (
                 <>
