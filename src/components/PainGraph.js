@@ -111,7 +111,7 @@ const PainGraph=({userObj})=>{
             />
             <button 
                 className="graph_updateBtn"
-                onClick={()=>{fetchData('')}}>Update
+                onClick={()=>{fetchData('')}}>Update</button>
             {nameList.map((name)=> (
             <button 
                 className="graph_spotBtn"
@@ -124,4 +124,4 @@ const PainGraph=({userObj})=>{
     );
 }
 
-export default PainGraph
+export default PainGraph;
