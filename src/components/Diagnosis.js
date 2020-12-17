@@ -2,16 +2,32 @@ import React, {useEffect, useState} from "react";
 import { v4 as uuidv4 } from "uuid";
 import { dbService, storageService } from "fbase";
 import Result from "components/Result";
+import SubNavigation from "./SubNavigation";
+
+// 보기좋은 시간 반환 함수
+Date.prototype.yyyymmdd = function() {
+    let MM = this.getMonth() + 1; // getMonth() is zero-based
+    let dd = this.getDate();
+    let hh = this.getHours();
+    let mm = this.getMinutes();
+    let ss = this.getSeconds();
+  
+    return ['📆',this.getFullYear(),'.',
+            (MM>9 ? '' : '0') + MM,'.',
+            (dd>9 ? '' : '0') + dd,'⏱',
+            (hh>9 ? '' : '0') + hh,':',
+            (mm>9 ? '' : '0') + mm,':',
+            (ss>9 ? '' : '0') + ss
+           ].join('');
+  };
 
 const Diagnosis = ({userObj}) => {
     const [result, setResult] = useState("");
     const [results, setResults] = useState([]);
-    const [tag, setTag] = useState("");
-    const [tags, setTags] = useState([]); // view log
     const [attachment, setAttachment] = useState("");
     useEffect(() => {
         // snapshot : any change in database -> alert
-        dbService.collection("results_list")
+        dbService.collection("results_list_1")
         .orderBy("createdAt", "desc")
         .onSnapshot((snapshot) => {
             const resultArray = snapshot.docs.map(doc => ({
@@ -30,6 +46,7 @@ const Diagnosis = ({userObj}) => {
     }, []);
     const onSubmit = async (event) => {
         event.preventDefault();
+        var date = new Date(); 
         if (result === "") {
             return;
         }
@@ -43,14 +60,12 @@ const Diagnosis = ({userObj}) => {
         }
         const resultObj = {
             text: result,
-            hash: tag,
-            createdAt: Date.now(),
+            createdAt: date.yyyymmdd(),
             creatorId: userObj.uid,
             attachmentUrl,
         }; 
-        await dbService.collection("results_list").add(resultObj);
+        await dbService.collection("results_list_1").add(resultObj);
             setResult("");
-            setTag("");
             setAttachment("");
     };
     const onChange = (event) => {
@@ -58,12 +73,6 @@ const Diagnosis = ({userObj}) => {
             target: {value},
         } = event;
         setResult(value);
-    };
-    const onChange2 = (event) => {
-        const {
-            target: {value},
-        } = event;
-        setTag(value);
     };
     const onFileChange = (event) => {
         const {
@@ -82,6 +91,7 @@ const Diagnosis = ({userObj}) => {
       const onClearAttachment = () => setAttachment(null);
     return (
     <div>
+        <div id = "subNav"><SubNavigation/></div>
         <form onSubmit={onSubmit} className="diagnosisForm">
                 <div className="diagnosisInput__container">
                 <input 
@@ -91,14 +101,6 @@ const Diagnosis = ({userObj}) => {
                     type="text" 
                     placeholder="Writing My Diagnosis Result" 
                     maxLength={1000} 
-                />
-                <input 
-                    className="diagnosisInput__input"
-                    value={tag} 
-                    onChange={onChange2} 
-                    type="hash" 
-                    placeholder="Writing My Tag" 
-                    maxLength={90} 
                 />
                 <input 
                     type="submit" 
