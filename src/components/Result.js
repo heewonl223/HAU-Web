@@ -99,6 +99,7 @@ const Result = ({resultObj, isOwner}) => {
                     </div>
                     )}
                 </div>
+                </>
                 )}
         </div>
     );
