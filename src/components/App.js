@@ -5,6 +5,7 @@ import { authService } from "fbase";
 import '../HowAboutU.css'
 import Footer from "./Footer";
 
+
 function App() {
   const [init, setInit] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -28,7 +29,7 @@ function App() {
     ) : (
       "Welcome! :)" 
     )}
-
+    
     <Footer/>
     </div>
   );

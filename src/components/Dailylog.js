@@ -92,17 +92,49 @@ const Dailylog = ({userObj}) => {
     };
     return (
     <div>
-        <form onSubmit={onSubmit}>
-            <div>
-                <input value={bodyPart} onChange={onChange3} type="bodyPart" placeholder="어디가 아프신가요?" maxLength={10}/>
-                <span onClick={()=>{if (painDegree>0)setpainDegree(painDegree-1)}}>😊</span>
-                <span>{painDegree}</span>
-                <span onClick={()=>{if (painDegree<10)setpainDegree(painDegree+1)}}>😷</span>
+        <form onSubmit={onSubmit} className="dailylogForm">
+            <div className="dailylogInput__container">
+            <textarea
+                value={record} 
+                onChange={onChange} 
+                type="text" 
+                placeholder="Writing My Daily Log"
+                maxLength={1000} 
+            />
+            <input 
+                className="dailylogInput__input"
+                value={tag} 
+                onChange={onChange2} 
+                type="hash" 
+                placeholder="Writing My Tag" 
+                maxLength={90} 
+            />
             </div>
-            <div>
-                <input value={record} onChange={onChange} type="text" placeholder="Writing My Daily Log" maxLength={120} />
-                <input value={tag} onChange={onChange2} type="hash" placeholder="Writing My Tag" maxLength={90} />
-                <input type="submit" value="Save" />
+            <div className="pain">
+                <input 
+                    className="pain__input"
+                    value={bodyPart} 
+                    onChange={onChange3} 
+                    type="bodyPart" 
+                    placeholder="어디가 아프신가요?" 
+                    maxLength={10}
+                />
+                <span 
+                    onClick={()=>{
+                        if (painDegree>0)setpainDegree(painDegree-1)}
+                        }>😊
+                </span>
+                <span>{painDegree}</span>
+                <span 
+                    onClick={()=>{
+                        if (painDegree<10)setpainDegree(painDegree+1)}
+                        }>😷
+                </span>
+                <input 
+                    type="submit" 
+                    value="Upload" 
+                    className="dailylogInput__arrow"
+                />
             </div>
         </form>
         <div>

@@ -1,23 +1,22 @@
 import { dbService, storageService } from "fbase";
 import React, { useState } from "react";
 
-const Result = ({resultObj, isOwner}) => {
+const Result2 = ({resultObj, isOwner}) => {
     const [editing, setEditing] = useState(false);  // for true false
     const [newResult, setNewResult] = useState(resultObj.text); // update text in input
-    const [newTag, setNewTag] = useState(resultObj.hash);
+    
     const onDeleteClick = async () => {
         const ok = window.confirm("Are you sure you want to delete this diagnosis?");
         if (ok) {
-            await dbService.doc(`results_list/${resultObj.id}`).delete();    
+            await dbService.doc(`results_list_1/${resultObj.id}`).delete();    
             await storageService.refFromURL(resultObj.attachmentUrl).delete();
         }
     };
     const toggleEditing = () => setEditing((prev) => !prev);
     const onSubmit = async (event) =>  {
         event.preventDefault();
-        await dbService.doc(`results_list/${resultObj.id}`).update({
+        await dbService.doc(`results_list_2/${resultObj.id}`).update({
             text: newResult,
-            hash: newTag,
         });
         setEditing(false);
     };
@@ -27,12 +26,6 @@ const Result = ({resultObj, isOwner}) => {
         } = event;
         setNewResult(value);
     };
-    const onChange2 = (event) => {
-        const {
-            target: {value},
-        } = event;
-        setNewTag(value);
-    };
     return (
         <div>
             {
@@ -40,6 +33,7 @@ const Result = ({resultObj, isOwner}) => {
                 <>
                     {isOwner && (
                         <>
+                        <div>{resultObj.createdAt}</div>
                             <form onSubmit={onSubmit} className="result_container resultEdit">
                                 <input 
                                     type="text" 
@@ -47,13 +41,6 @@ const Result = ({resultObj, isOwner}) => {
                                     value={newResult} 
                                     required 
                                     onChange={onChange}
-                                    className="result_formInput"
-                                />
-                                <input type="hash"
-                                    placeholder="Edit your tag"
-                                    value={newTag}
-                                    required
-                                    onChange={onChange2}
                                     className="result_formInput"
                                 />
                                 <input 
@@ -71,12 +58,11 @@ const Result = ({resultObj, isOwner}) => {
                     )}
                 </>
                 ) : (
-                <>
                 <div className="result">
                     {isOwner && (
                         <div className="result_container">
-                            <h4>Diagnosis:{resultObj.text}</h4>
-                            <h4>Tag:{resultObj.hash}</h4>
+                            <div>{resultObj.createdAt}</div>
+                            <div>{resultObj.text}</div>
                             <div>
                             {resultObj.attachmentUrl && (
                                 <img src={resultObj.attachmentUrl} />
@@ -104,4 +90,4 @@ const Result = ({resultObj, isOwner}) => {
     );
 };
 
-export default Result;
+export default Result2;

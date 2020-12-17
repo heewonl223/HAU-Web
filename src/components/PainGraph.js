@@ -57,16 +57,19 @@ const PainGraph=({userObj})=>{
                     degreeDatum.push(doc.data().degree);
                 }
             });
+
             setNameList(Array.from(new Set(labelName)));
 
             if (selectName!==""){
                 setPainpart(selectName);
                 degreeDatum=[]; partName=[];
+
                 docs.forEach((doc)=>{
                     if(doc.data().creatorId===userObj.uid){
                         if(doc.data().part===selectName){
                         
                         partName.push(doc.data().createdAt.substring(2,12));
+
                         degreeDatum.push(doc.data().degree);
                     }
                     }
@@ -77,7 +80,6 @@ const PainGraph=({userObj})=>{
             setDegreeData((degreeData)=>degreeData.concat(degreeDatum));  
         })
     }
-  
  
 
     // 최초 렌더링 시 fetchData 한 번 실행
@@ -99,7 +101,7 @@ const PainGraph=({userObj})=>{
     };
 
     return (
-        <div style={{width:500}}>
+        <div className="painGraph">
             <div>{painpart}</div>
             <Bar
                 data={graphdata}
@@ -107,11 +109,15 @@ const PainGraph=({userObj})=>{
                 height={300}
                 width={500}
             />
-            <button //데이터와 그래프 동기화 버튼
-                onClick={()=>{fetchData('')}}>Update</button>
+            <button 
+                className="graph_updateBtn"
+                onClick={()=>{fetchData('')}}>Update
             {nameList.map((name)=> (
-                //병명에 따른 그래프 나타내는 버튼
-                <button onClick={()=>fetchData(name)}>{name}</button>
+            <button 
+                className="graph_spotBtn"
+                onClick={()=>fetchData(name)}>{name}
+            </button>
+
             ))}           
             
         </div>

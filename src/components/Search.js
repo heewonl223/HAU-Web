@@ -46,11 +46,20 @@ class Search extends Component {
     render() {
     return (
         <div>
+            <div id = "search_temp">
+            :)
+            </div>
+
+            <div id = "search_input" >
             <AsyncSelect
                 loadOptions={this.loadOptions}
                 onChange={this.handleOnChange}
             />
-            <p>Selected Tag:</p>
+        
+            </div>
+            <div id ="select_tag">
+                Selected Tag:
+            </div>
             {
                 this.state.selectedTag.map(e => {
                     return (
