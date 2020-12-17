@@ -34,7 +34,7 @@ const Result = ({resultObj, isOwner}) => {
         setNewTag(value);
     };
     return (
-        <div class ="result">
+        <div>
             {
                 editing ? (
                 <>
@@ -99,6 +99,7 @@ const Result = ({resultObj, isOwner}) => {
                     </div>
                     )}
                 </div>
+                </>
                 )}
         </div>
     );
