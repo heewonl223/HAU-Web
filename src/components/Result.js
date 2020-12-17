@@ -40,7 +40,7 @@ const Result = ({resultObj, isOwner}) => {
                 <>
                     {isOwner && (
                         <>
-                            <form onSubmit={onSubmit} className="container resultEdit">
+                            <form onSubmit={onSubmit} className="result_container resultEdit">
                                 <input 
                                     type="text" 
                                     placeholder="Edit your diagnosis result" 
@@ -59,33 +59,46 @@ const Result = ({resultObj, isOwner}) => {
                                 <input 
                                     type="submit" 
                                     value="Update diagnosis result"
-                                    className="editUpdateBtn" 
+                                    className="result_editUpdateBtn" 
+                                />
+                                <input 
+                                    onClick={toggleEditing} 
+                                    className="result_editCancelBtn"
+                                    value="Cancel"
                                 />
                             </form>
-                            <button onClick={toggleEditing} className="editUpdateBtn editCancelBtn">
-                                Cancel
-                            </button>
                         </>
                     )}
                 </>
                 ) : (
                 <>
+                <div className="result">
                     {isOwner && (
-                        <>
-                        <h4>Diagnosis:{resultObj.text}</h4>
-                        <h4>Tag:{resultObj.hash}</h4>
-                        {resultObj.attachmentUrl && (
-                            <img src={resultObj.attachmentUrl} />
-                        )}
-                        </>
+                        <div className="result_container">
+                            <h4>Diagnosis:{resultObj.text}</h4>
+                            <h4>Tag:{resultObj.hash}</h4>
+                            <div>
+                            {resultObj.attachmentUrl && (
+                                <img src={resultObj.attachmentUrl} />
+                            )}
+                            </div>
+                        </div>
                     )}
                     {isOwner && (
-                    <>
-                        <button onClick={toggleEditing} className ="result_editBtn">Edit diagnosis result</button>
-                        <button onClick={onDeleteClick} className ="result_deleteBtn">Delete diagnosis result</button>
-                    </>
+                    <div className="result_BtnContainer">
+                        <button 
+                            onClick={toggleEditing} 
+                            className ="result_editBtn">
+                                Edit diagnosis result
+                            </button>
+                        <button 
+                            onClick={onDeleteClick} 
+                            className ="result_deleteBtn">
+                                Delete diagnosis result
+                        </button>
+                    </div>
                     )}
-                </>
+                </div>
                 )}
         </div>
     );

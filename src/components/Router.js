@@ -5,8 +5,10 @@ import Dailylog from "components/Dailylog";
 import Navigation from "components/Navigation";
 import Profile from "routes/Profile";
 import Diagnosis from "components/Diagnosis";
+import Diagnosis2 from "components/Diagnosis2";
+import Diagnosis3 from "components/Diagnosis3";
 import Logo from 'components/reallogo.png';
-import Search from 'components/Search';
+import Search from "components/Search";
 
 let text = ["this is text with breakdown",
                         <br/>,
@@ -64,8 +66,14 @@ const AppRouter = ({isLoggedIn, userObj}) => {
                         <Route exact path="/diagnosis">
                             <Diagnosis userObj={userObj}/>
                         </Route>
+                        <Route exact path="/diagnosis2">
+                            <Diagnosis2 userObj={userObj}/>
+                        </Route>
+                        <Route exact path="/diagnosis3">
+                            <Diagnosis3 userObj={userObj}/>
+                        </Route>
                         <Route exact path="/search">
-                            <Search userObj={userObj}/>
+                            <Search />
                         </Route>
                     </> 
                 ) : (
@@ -114,7 +122,7 @@ const AppRouter = ({isLoggedIn, userObj}) => {
                     <Route exact path="/search">
                         <div id = "layout">
                             <Auth />
-                        </div>                    
+                        </div>
                     </Route>
                     <Redirect from="*" to="/" />
                     </>

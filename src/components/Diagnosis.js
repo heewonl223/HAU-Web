@@ -8,7 +8,7 @@ const Diagnosis = ({userObj}) => {
     const [results, setResults] = useState([]);
     const [tag, setTag] = useState("");
     const [tags, setTags] = useState([]); // view log
-    const [attachment, setAttachment] = useState();
+    const [attachment, setAttachment] = useState("");
     useEffect(() => {
         // snapshot : any change in database -> alert
         dbService.collection("results_list")
@@ -30,6 +30,9 @@ const Diagnosis = ({userObj}) => {
     }, []);
     const onSubmit = async (event) => {
         event.preventDefault();
+        if (result === "") {
+            return;
+        }
         let attachmentUrl = "";
         if (attachment !== ""){
             const attachmentRef = storageService
@@ -86,7 +89,7 @@ const Diagnosis = ({userObj}) => {
                     value={result} 
                     onChange={onChange} 
                     type="text" 
-                    placeholder="Writing My Diagnosis" 
+                    placeholder="Writing My Diagnosis Result" 
                     maxLength={1000} 
                 />
                 <input 
@@ -105,7 +108,6 @@ const Diagnosis = ({userObj}) => {
             </div>
             <label for="attach-file" className="diagnosisInput__label">
                 <span>Add photos</span>
-                
             </label>
             <input
                 id="attach-file"

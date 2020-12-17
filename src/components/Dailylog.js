@@ -1,12 +1,37 @@
 import React, {useEffect, useState} from "react";
 import { dbService } from "fbase";
 import Record from "components/Record";
+import PainGraph  from "components/PainGraph";
+
+
+// 보기좋은 시간 반환 함수
+Date.prototype.yyyymmdd = function() {
+    let MM = this.getMonth() + 1; // getMonth() is zero-based
+    let dd = this.getDate();
+    let hh = this.getHours();
+    let mm = this.getMinutes();
+    let ss = this.getSeconds();
+  
+    return ['📆',this.getFullYear(),'.',
+            (MM>9 ? '' : '0') + MM,'.',
+            (dd>9 ? '' : '0') + dd,'⏱',
+            (hh>9 ? '' : '0') + hh,':',
+            (mm>9 ? '' : '0') + mm,':',
+            (ss>9 ? '' : '0') + ss
+           ].join('');
+  };
+
 
 const Dailylog = ({userObj}) => {
     const [record, setRecord] = useState("");
     const [records, setRecords] = useState([]);
     const [tag, setTag] = useState("");
     const [tags, setTags] = useState([]);
+
+    const [bodyPart,setBodyPart] = useState("");
+    const [painDegree,setpainDegree]=useState(0);
+
+    
     useEffect(() => {
         // snapshot : any change in database -> alert
         dbService.collection("records_list")
@@ -22,21 +47,30 @@ const Dailylog = ({userObj}) => {
                 id:doc.id,
                 ...doc.data(),
             }));
+            
             setRecords(recordArray);
             setTags(tagArray);
+
         });
     }, []);
+
     const onSubmit = async (event) => {
         event.preventDefault();
+        var date = new Date();
         await dbService.collection("records_list").add({
             text: record,
             hash: tag,
-            createdAt: Date.now(),
+            createdAt: date.yyyymmdd(),
             creatorId: userObj.uid,
+            part: bodyPart,
+            degree: painDegree
         });
         // submit(save) 이후 빈칸 만들기
         setRecord("");
         setTag("");
+        setBodyPart("");
+        setpainDegree(0);
+        
     };
     const onChange = (event) => {
         const {
@@ -50,36 +84,62 @@ const Dailylog = ({userObj}) => {
         } = event;
         setTag(value);
     }; 
-    console.log(record);
+    const onChange3 = (event) => {
+        const {
+            target: {value},
+        } = event;
+        setBodyPart(value);
+    };
     return (
     <div>
         <form onSubmit={onSubmit} className="dailylogForm">
             <div className="dailylogInput__container">
-            <textarea rows="4" cols="50"
-                className="dailylogInput__input"
+            <textarea
                 value={record} 
                 onChange={onChange} 
                 type="text" 
                 placeholder="Writing My Daily Log"
                 maxLength={1000} 
             />
-            <input value={tag}
-                className="dailylogInput__input"
-                onChange={onChange2}
-                type="hash"
-                placeholder="Writing My Tag"
-                maxLength={90} />
             <input 
-                type="submit" 
-                value="Upload" 
-                className="dailylogInput__arrow"
+                className="dailylogInput__input"
+                value={tag} 
+                onChange={onChange2} 
+                type="hash" 
+                placeholder="Writing My Tag" 
+                maxLength={90} 
             />
+            </div>
+            <div className="pain">
+                <input 
+                    className="pain__input"
+                    value={bodyPart} 
+                    onChange={onChange3} 
+                    type="bodyPart" 
+                    placeholder="어디가 아프신가요?" 
+                    maxLength={10}
+                />
+                <span 
+                    onClick={()=>{
+                        if (painDegree>0)setpainDegree(painDegree-1)}
+                        }>😊
+                </span>
+                <span>{painDegree}</span>
+                <span 
+                    onClick={()=>{
+                        if (painDegree<10)setpainDegree(painDegree+1)}
+                        }>😷
+                </span>
+                <input 
+                    type="submit" 
+                    value="Upload" 
+                    className="dailylogInput__arrow"
+                />
             </div>
         </form>
         <div>
+            <PainGraph userObj={userObj}/>
             {tags.map((tag) => (
-                // record.js helps keep code short
-                // create record(daily log) component
                 <Record
                     key={tag.id}
                     recordObj={tag}

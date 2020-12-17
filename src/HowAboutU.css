@@ -3,11 +3,56 @@
 
 /*App.js*/
 
-#wrapper{
+#init{
   width: 1800px;
   margin: 15px auto;
+  text-align: center;
+  font-size: 50px;
+}
+
+#intro_img{
+  width : 1000px;
   text-align: left;
+  font-size: 200px;
+  margin-left : 300px;
+  color:#ffffff;
+  font-family: "Consolas";
+  display:flex;
+}
+
+#intro{
+  width: 1000px;
+  margin: 10px auto;
+  text-align: left;
+  font-size: 30px;
+  font-family: "Consolas";
+  margin-right : 500px;
+  display:flex;
+}
+
+#new_line{
+  width : 1000px;
+  text-align: left;
+  font-size: 50px;
+  margin-left : 300px;
+  color:#ffffff;
+  font-family: "Consolas";
+  display:flex;
+}
+
+#layout {
+  position: relative;
+  top: -400px;
+
+}
+
+#welcome {
+  position: relative;
+  top: -400px;
+  margin-left : 1070px;
+  margin-bottom : 30px;
   font-size: 70px;
+  font-family: "Consolas";
 }
 
 a:link {text-decoration: none; color: #000000;}
@@ -21,10 +66,10 @@ a:hover {text-decoration: none; font-weight: bold; color: #000000;}
 
 /*App.js end*/
 
-/*Navigation.js*/
 
+/*Navigation.js*/
 #Nav_img{
-  padding-top: 60px;
+  padding-top: 55px;
   padding-bottom: 11px;
   font-size: 62px;
   font-weight: bold;
@@ -36,39 +81,55 @@ a:hover {text-decoration: none; font-weight: bold; color: #000000;}
 }
 
 #Title{
-  padding-top: 65px;
-  padding-bottom: 32px;
-  font-size: 75px;
+  padding-top: 69px;
+  padding-bottom: 40px;
+  font-size: 58px;
   font-weight: bold;
   font-family: "Consolas";
   float: left;
-  width: 600px;
-  text-align: left;
-  border-bottom:5px solid #d9d9d9; 
-}
-
-#Nav1{
-  font-size: 40px;
-  padding-top: 78px;
-  padding-bottom: 54px;
-  font-family: "Consolas";
-  float: left;
-  width: 500px;
+  width: 450px;
   text-align: center;
   border-bottom:5px solid #d9d9d9; 
 }
 
+#Nav1{
+  font-size: 35px;
+  padding-top: 78px;
+  padding-bottom: 54px;
+  font-family: "Consolas";
+  float: left;
+  width: 370px;
+  text-align: center;
+  border-bottom:5px solid #d9d9d9; 
+}
+  
+  #Nav2{
+  font-size: 20px;
+  padding-top: 40px;
+  padding-bottom: 20px;
+  font-family: "Consolas";
+  float: left;
+  width: 180px;
+  text-align: center;
+  border-bottom:5px solid #d9d9d9; 
+  margin-left: 10px;
+}
+
+#subNav{
+  margin-left:500px;
+  float:center;
+}
 /*Navigation.js end*/
 
- /*Footer.js*/
 
+
+/*Footer.js*/
  .footer {
-
     position:fixed;
     left:0px;
     bottom:0;
     width:100%;
-    height:70px;
+    height:30px;
     padding:10px 0;
     border-top:1px solid #d9d9d9;
     font-size:20px;
@@ -79,26 +140,25 @@ a:hover {text-decoration: none; font-weight: bold; color: #000000;}
  /*Footer.js end*/
 
  /* Auth.js */
-
  .authcontainer {
-  width: 100%;
+  width: 500px;
   max-width: 320px;
   display: flex;
   flex-direction: column;
-  margin-left : 55%;
-  padding-top : 15%;
+  margin-left : 1250px;
+  padding-top : 0%;
   justify-content: center;
   align-items: center;
 }
 
 .authInput {
   max-width: 320px;
-  width: 100%;
+  width: 500px;
   padding: 10px;
   border-radius: 30px;
   background-color: rgba(255, 255, 255, 1);
   margin-bottom: 10px;
-  font-size: 20px;
+  font-size: 25px;
   color: black;
   box-sizing: content-box;
 }
@@ -116,7 +176,7 @@ a:hover {text-decoration: none; font-weight: bold; color: #000000;}
   color: tomato;
   text-align: center;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 25px;
 }
 
 .authSwitch {
@@ -127,19 +187,33 @@ a:hover {text-decoration: none; font-weight: bold; color: #000000;}
   margin-top: 10px;
   margin-bottom: 50px;
   display: block;
-  font-size: 15px;
+  font-size: 20px;
   text-decoration: underline;
   /*authcontainer*/
   width: 100%;
   max-width: 320px;
   display: flex;
   flex-direction: column;
-  margin-left : 55%;
+  margin-left : 1250px;
   justify-content: center;
   align-items: center; 
 }
+ /* Auth.js end */
 
-  /* Auth.js end */
+
+/*profile.js*/
+.logOut {
+  margin-left: 1060px;
+  text-align: center;
+  background: #04aaff;
+  color: white;
+  box-sizing: content-box;
+  cursor: pointer;
+  padding: 7px 20px;
+  border-radius: 30px;
+  font-size: 15px;
+}
+/*profile.js end*
 
 
 box{
@@ -160,18 +234,297 @@ form{
   text-align: right; 
 }
 
-/* Record.js */
-.container {
-  width: 100%;
-  max-width: 320px;
-  display: flex;
-  flex-direction: column;
+/* Dailylog.js*/
+textarea{
+    width:800px; 
+    height:200px; 
+    resize:none;  
+    -ms-overflow-style: none;
+    flex-grow: 1;
+    height: 40px;
+    padding: 20px 0px 300px 20px;
+    color: rgb(0, 0, 0);
+    border: 5px solid #04aaff;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 20px;
+    font-family: "input"
+}
+::-webkit-scrollbar { display: none; }
+
+.dailylogForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+  
+.dailylogInput__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+    margin-bottom: 20px;
+    margin-top: 30px;
 }
 
+.dailylogInput__input {
+    flex-grow: 1;
+    height: 40px;
+    padding: 20px 0px 300px 20px;
+    color: rgb(0, 0, 0);
+    border: 5px solid #71c2eb;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 20px;
+}
+  
+.dailylogInput__arrow {
+    position: relative;
+    right: 0;
+    background-color: #55c6ff;
+    height: 50px;
+    width: 100px;
+    padding: 10px 0px;
+    text-align: center;
+    border-radius: 20px;
+    color: rgb(255, 252, 244);
+    box-sizing: border-box;
+    margin-left: 250px;
+    font-size: 20px;
+}
+  
+.dailylogInput__label {
+    color: #04aaff;
+    cursor: pointer;
+}
+  
+.dailylogInput__label span {
+    margin-right: 10px;
+    font-size: 12px;
+}
+
+.pain__input{
+  flex-grow: 1;
+  height: 40px;
+  padding: 0px 20px 0px 70px;
+  color: rgb(0, 0, 0);
+  border: 2px solid #04aaff;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 20px;
+}
+.pain span{
+  padding-left: 20px;
+}
+ /* Dailylog.js end*/
+
+
+
+/* Record.js */
+.record_container {
+  margin-top: 20px;
+  background-color: #1188f865;
+  width: 100%;
+  max-width: 700px;
+  padding: 20px;
+  border-radius: 10px;
+  flex-direction: column;
+  color: rgba(0, 0, 0, 0.8);
+  margin-left: 550px;
+  font-size: 30px;
+  line-height : 150%;
+  }
+
+  .record_BtnContainer{
+    margin-bottom: 20px;
+    background-color:  #1188f865;
+    width: 100%;
+    max-width: 700px;
+    padding: 0px 20px 20px 20px;
+    border-radius: 10px;
+    flex-direction: column;
+    color: rgba(0, 0, 0, 0.8);
+    margin-left: 550px;
+}
 
 .record_formInput {
-  width: 100%;
-  padding: 20px 20px;
+    width: 100%;
+    padding: 20px 0px 20px 0px;
+    border-radius: 20px;
+    border: 1px solid black;
+    text-align: center;
+    background-color: white;
+    color: black;
+}
+
+.record_editBtn {
+    width: 130px;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: rgba(89, 71, 255, 0.267);
+    margin-left: 5px;
+    margin-top : 20px;
+    padding: 3px
+  }
+
+.record_deleteBtn {
+    width: 130px;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: rgba(71, 172, 255, 0.267);
+    margin-left: 5px;
+    padding: 3px
+}
+
+.recordEdit{
+  background-color: #175574;
+  justify-content: center;
+}
+
+.recordEdit .record_editBtn {
+    cursor: pointer;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+  
+.record_editUpdateBtn {
+  cursor: pointer;
+  margin-top: 10px;
+  padding: 7px 40px;
+  color: white;
+  border-radius: 20px;
+  background-color: #04aaff;
+  cursor: pointer;
+  }
+
+.record_editCancelBtn {
+  cursor: pointer;
+  margin-top: 10px;
+  padding: 7px;
+  text-align: center;
+  color: white;
+  border-radius: 20px;
+  background-color: tomato;
+  cursor: pointer;
+  margin-left: 5px;
+  }
+/* Record.js end*/
+
+    
+/* Diagnosis.js */
+.diagnosisForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+  
+.diagnosisInput__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    width: 90%;
+}
+  
+.diagnosisInput__input {
+    flex-grow: 1;
+    height: 40px;
+    padding: 0px 20px;
+    color: black;
+    border: 5px solid #71c2eb;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.diagnosisInput__arrow {
+    position: absolute;
+    right: 0;
+    background-color: #55c6ff;
+    height: 50px;
+    width: 90px;
+    padding: 10px 0px;
+    text-align: center;
+    border-radius: 20px;
+    color: rgb(255, 252, 244);
+    box-sizing: border-box;
+    font-size: 18px;
+}
+
+.diagnosisInput__label {
+    color: #04aaff;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.diagnosisInput__label span {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.diagnosisForm__attachment {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.diagnosisForm__attachment img {
+    width: 200px;
+    border-radius: 40px;
+}
+
+.diagnosisForm__clear {
+    color: #04aaff;
+    cursor: pointer;
+    text-align: center;
+}
+
+.diagnosisForm__clear span {
+    margin-right: 10px;
+    font-size: 20px;
+}
+/*Diagnosis.js end*/
+    
+    
+/* Result.js */
+.result_container {
+    margin-top: 50px;
+    background-color: #1188f865;
+    width: 80%;
+    max-width: relative;
+    padding: 20px;
+    border-radius: 10px;
+    /*display: flex;*/
+    flex-direction: column;
+    position: relative;
+    color: rgba(0, 0, 0, 0.8);
+    margin-left: 150px;
+    font-size: 30px;
+    line-height : 150%;
+  }
+
+  .result_BtnContainer{
+    margin-bottom: 20px;
+    background-color: #1188f865;
+    width: 80%;
+    max-width: relative;
+    padding: 0px 20px 20px 20px;
+    border-radius: 10px;
+    /*display: flex;*/
+    flex-direction: column;
+    color: rgba(0, 0, 0, 0.8);
+    margin-left: 150px;
+  }
+
+.result_formInput {
+  width: 90%;
+  padding: 20px 0px 20px 0px;
   border-radius: 20px;
   border: 1px solid black;
   text-align: center;
@@ -179,62 +532,177 @@ form{
   color: black;
 }
 
-.record_editBtn {
-  width: 130px;
+.result_editBtn {
+  width: 170px;
   border-radius: 20px;
   cursor: pointer;
-  background-color: #04aaff;
+  background-color: rgba(89, 71, 255, 0.267);
   margin-left: 5px;
   margin-top : 20px;
   padding: 3px
 }
 
-.record_deleteBtn {
-  width: 130px;
+.result_deleteBtn {
+  width: 170px;
   border-radius: 20px;
   cursor: pointer;
-  background-color: tomato;
+  background-color: rgba(71, 172, 255, 0.267);
   margin-left: 5px;
   padding: 3px
 }
 
-.recordEdit .record_editBtn {
+.resultEdit{
+  background-color: #175574;
+  justify-content: center;
+}
+
+.resultEdit .result_editBtn {
   cursor: pointer;
   margin-top: 15px;
   margin-bottom: 5px;
 }
 
-.record {
-  margin-bottom: 20px;
-  background-color: rgb(178, 199, 178);
-  width: 100%;
-  max-width: 320px;
-  padding: 20px;
-  border-radius: 10px;
+.result img {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  color: rgba(0, 0, 0, 0.8);
+  width: 1000px;
+  padding: 50px 0px 0px 0px;
 }
 
-.record h4 {
-  font-size: 20px;
-}
+.result_editUpdateBtn {
+    cursor: pointer;
+    margin-top: 10px;
+    padding: 7px 20px;
+    text-align: center;
+    color: white;
+    border-radius: 20px;
+    background-color: #04aaff;
+    cursor: pointer;
+  }
 
-.editUpdateBtn {
+.result_editCancelBtn {
   cursor: pointer;
-  width: 100%;
   margin-top: 10px;
   padding: 7px 20px;
   text-align: center;
   color: white;
   border-radius: 20px;
-  background-color: #04aaff;
+  background-color: tomato;
+  cursor: pointer;
+  margin-left: 5px;
+  }
+
+.result__actions {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.result__actions span {
   cursor: pointer;
 }
 
-.editCancelBtn {
-  cursor: pointer;
-  background-color: tomato;
+.result__actions span:first-child {
+  margin-right: 10px;
 }
-/* Record.js end*/
+/* Result.js end*/
+
+
+/* Profile.js*/
+.logout {
+  max-width: 320px;
+  width: 500px;
+  padding: 10px;
+  border-radius: 30px;
+  background: #04aaff;
+  margin-bottom: 10px;
+  font-size: 25px;
+  color: black;
+  box-sizing: content-box;
+  margin-right : 200px;
+}
+
+.logoutSubmit {
+  text-align: center;
+  background: #04aaff;
+  color: white;
+  margin-top: 10px;
+  box-sizing: content-box;
+  cursor: pointer;
+  margin-left : 200px;
+}
+/* Profile.js end */
+
+    
+/* Search.js */
+#search_temp{
+  width:1000px;
+  padding-top : 30px;
+  margin: 10px auto;
+  text-align: center;
+  font-size: 30px;
+  font-family: "Consolas";
+  margin-right : 800px;
+  display:block;
+  color:#ffffff;
+}
+
+#search_input{
+  font-family: "Consolas";
+  flex-grow: 1;
+  height: 45px;
+  padding: 0px 20px;
+  color: black;
+  border: 3px solid #04aaff;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+#search_btn{
+  border: 0px;
+  font-family: "Consolas";
+  right: 0;
+  background-color: #04aaff;
+  height: 50px;
+  width: 90px;
+  padding: 10px 0px;
+  text-align: center;
+  border-radius: 20px;
+  color: white;
+  box-sizing: border-box;
+}
+
+#search_all{
+  font-family: "Consolas";
+  margin-bottom: 100px;
+}
+/* Search.js end */
+
+
+/* PainGraph.js */
+.painGraph{
+  width : 500px;
+  margin-top: 50px;
+  margin-left : 650px;
+}
+
+.graph_updateBtn{
+  border-radius: 20px;
+  cursor: pointer;
+  background-color: rgba(25, 209, 255, 0.479);
+  margin-right: 20px;
+  margin-top : 20px;
+  padding: 4px;
+}
+
+.graph_spotBtn{
+  width: auto;
+  border-radius: 20px;
+  cursor: pointer;
+  background-color: #fcf3dc7e;
+  margin-right: 5px;
+  margin-top : 20px;
+  padding: 4px;
+  font-size: 20px;
+}
+/* PainGraph.js end */

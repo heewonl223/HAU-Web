@@ -83,8 +83,4 @@ const Search =({userObj})=>{
         </div>
     );
 };
-
-
-
-
 export default Search;

@@ -44,13 +44,14 @@ const Record = ({recordObj, isOwner}) => {
         setNewPart(value);
     };
     return (
-        <div class="record">
+        <div>
             {
                 editing ? (
                 <>
                     {isOwner && (
                         <>
-                            <form onSubmit={onSubmit} className="container recordEdit">
+                        <div>{recordObj.createdAt}</div>
+                            <form onSubmit={onSubmit} className="record_container recordEdit">
                                 <input 
                                     type="text" 
                                     placeholder="Edit your log" 
@@ -70,7 +71,7 @@ const Record = ({recordObj, isOwner}) => {
                                 <div>
                                     <input 
                                         type="part"
-                                        placeholder="어디가 아프신감?"
+                                        placeholder="Pain Spot"
                                         value={newPart} 
                                         required 
                                         onChange={onChange3} 
@@ -83,32 +84,45 @@ const Record = ({recordObj, isOwner}) => {
                                 <input 
                                     type="submit" 
                                     value="Update daily log" 
-                                    className="editUpdateBtn"
+                                    className="record_editUpdateBtn"
+                                />
+                                <input 
+                                    onClick={toggleEditing} 
+                                    className="record_editCancelBtn"
+                                    value="Cancel"
                                 />
                             </form>
-                            <button onClick={toggleEditing} className="editUpdateBtn editCancelBtn">Cancel</button>
                         </>
                     )}
                 </>
                 ) : (
-                <>
-                    {isOwner && (
-                        <>
-                        <div>{recordObj.text}</div>
-                        <div>{recordObj.hash}</div>
-                        <div>{recordObj.part}:{recordObj.degree}</div>
-                        </>
+                    <div>
+                        {isOwner && (
+                            <div className="record_container">
+                                <div>{recordObj.createdAt}</div>
+                                <div>📃 {recordObj.text}</div>
+                                <div>⭐ {recordObj.hash}</div>
+                                <div>{recordObj.part}:{recordObj.degree}</div>
+                            </div>
+                        )}
+                        {isOwner && (
+                            <div className="record_BtnContainer">
+                                <button 
+                                    onClick={toggleEditing} 
+                                    className ="record_editBtn">
+                                        Edit Log
+                                </button>
+                                <button 
+                                    onClick={onDeleteClick} 
+                                    className ="record_deleteBtn">
+                                        Delete Log
+                                    </button>
+                            </div>
+                        )}
+                    </div>
                     )}
-                    {isOwner && (
-                        <div>
-                            <button onClick={toggleEditing} className ="record_editBtn">Edit Log</button>
-                            <button onClick={onDeleteClick} className ="record_deleteBtn">Delete Log</button>
-                        </div>
-                    )}
-                </>
-                )}
-        </div>
-    );
-};
-
-export default Record;
+            </div>
+        );
+    };
+    
+    export default Record;
