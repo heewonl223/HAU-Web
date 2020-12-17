@@ -116,7 +116,7 @@ const Dailylog = ({userObj}) => {
                     value={bodyPart} 
                     onChange={onChange3} 
                     type="bodyPart" 
-                    placeholder="어디가 아프신가요?" 
+                    placeholder="Pain Spot?" 
                     maxLength={10}
                 />
                 <span 
