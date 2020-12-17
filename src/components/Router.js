@@ -5,6 +5,8 @@ import Dailylog from "components/Dailylog";
 import Navigation from "components/Navigation";
 import Profile from "routes/Profile";
 import Diagnosis from "components/Diagnosis";
+import Diagnosis2 from "components/Diagnosis2";
+import Diagnosis3 from "components/Diagnosis3";
 import Logo from 'components/reallogo.png';
 import Search from "components/Search";
 
@@ -63,6 +65,12 @@ const AppRouter = ({isLoggedIn, userObj}) => {
                         </Route>
                         <Route exact path="/diagnosis">
                             <Diagnosis userObj={userObj}/>
+                        </Route>
+                        <Route exact path="/diagnosis2">
+                            <Diagnosis2 userObj={userObj}/>
+                        </Route>
+                        <Route exact path="/diagnosis3">
+                            <Diagnosis3 userObj={userObj}/>
                         </Route>
                         <Route exact path="/search">
                             <Search />
