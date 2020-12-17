@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
 import { dbService } from "fbase";
 import Record from "components/Record";
-import PainGraph from "components/PainGraph";
+import PainGraph  from "components/PainGraph";
+
 
 // 보기좋은 시간 반환 함수
 Date.prototype.yyyymmdd = function() {
@@ -11,9 +12,9 @@ Date.prototype.yyyymmdd = function() {
     let mm = this.getMinutes();
     let ss = this.getSeconds();
   
-    return [this.getFullYear(),'.',
+    return ['📆',this.getFullYear(),'.',
             (MM>9 ? '' : '0') + MM,'.',
-            (dd>9 ? '' : '0') + dd,'@',,
+            (dd>9 ? '' : '0') + dd,'⏱',
             (hh>9 ? '' : '0') + hh,':',
             (mm>9 ? '' : '0') + mm,':',
             (ss>9 ? '' : '0') + ss
@@ -94,7 +95,6 @@ const Dailylog = ({userObj}) => {
         <form onSubmit={onSubmit} className="dailylogForm">
             <div className="dailylogInput__container">
             <textarea
-                
                 value={record} 
                 onChange={onChange} 
                 type="text" 
@@ -140,8 +140,6 @@ const Dailylog = ({userObj}) => {
         <div>
             <PainGraph userObj={userObj}/>
             {tags.map((tag) => (
-                // record.js helps keep code short
-                // create record(daily log) component
                 <Record
                     key={tag.id}
                     recordObj={tag}

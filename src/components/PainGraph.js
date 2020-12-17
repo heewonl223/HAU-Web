@@ -30,7 +30,6 @@ const graphoptions={
 
 
 const PainGraph=({userObj})=>{
-    const [dataDate,setDataDate]=useState([0]);
     const [partNames,setPartNames]=useState([""]);
     const [degreeData,setDegreeData]=useState([0]);
     const [nameList,setNameList]=useState([""]);
@@ -41,9 +40,8 @@ const PainGraph=({userObj})=>{
     const fetchData=(selectName)=>{
         setPartNames([]);
         setDegreeData([]);
-        setDataDate([]);
         
-        let datumDate=[], degreeDatum=[], partName=[];
+        let labelName=[], degreeDatum=[], partName=[];
         //dbService 객체 == firestore객체
         dbService
         .collection("records_list") //record_list 컬렉션 반환
@@ -54,54 +52,35 @@ const PainGraph=({userObj})=>{
             setPainpart("My PainGraph");
             docs.forEach((doc)=>{
                 if(doc.data().creatorId===userObj.uid){
-                    datumDate.push(doc.data().createdAt);
-                    partName.push(doc.data().part);
+                    labelName.push(doc.data().part);
+                    partName.push(doc.data().createdAt.substring(2,12)+'\n\n\n\n\n'+doc.data().part);
                     degreeDatum.push(doc.data().degree);
                 }
             });
-            setNameList(Array.from(new Set(partName)));
+
+            setNameList(Array.from(new Set(labelName)));
 
             if (selectName!==""){
                 setPainpart(selectName);
-                datumDate=[]; degreeDatum=[]; partName=[];
+                degreeDatum=[]; partName=[];
+
                 docs.forEach((doc)=>{
                     if(doc.data().creatorId===userObj.uid){
                         if(doc.data().part===selectName){
                         
-                        partName.push(doc.data().createdAt);
+                        partName.push(doc.data().createdAt.substring(2,12));
+
                         degreeDatum.push(doc.data().degree);
                     }
                     }
                 });
             }
             //받아온 데이터 barData state에 추가
-            setDataDate((dataDate)=>dataDate.concat(datumDate));
             setPartNames((partNames)=>partNames.concat(partName));
             setDegreeData((degreeData)=>degreeData.concat(degreeDatum));  
         })
     }
-  
-    
-   
-/* ----------------------------------------------------------
-    안 쓸 것같은데 혹시 몰라서 뒀습니다.. 최종 업데이트 할 때 지울게요
-    useEffect(() => {
-        // snapshot : any change in database -> alert
-        dbService.collection("records_list")
-        .orderBy("createdAt", "desc")
-        .onSnapshot((snapshot) => {
-            const nameArray = snapshot.docs.map((doc) => ({
-                // every item on array will look like this
-                id: doc.data().creator,
-                name : doc.data().part
-                
-            }));
-                        
-            setNameList(new Set(nameArray));
-        });
-    }, []);
----------------------------------------------------------------*/
-
+ 
 
     // 최초 렌더링 시 fetchData 한 번 실행
     useEffect(()=>{
@@ -130,7 +109,7 @@ const PainGraph=({userObj})=>{
                 height={300}
                 width={500}
             />
-            <button //이건....만약 자동동기화가 안되면 수동 동기화를 해야하기 때문에....일단..... 
+            <button 
                 className="graph_updateBtn"
                 onClick={()=>{fetchData('')}}>Update
             {nameList.map((name)=> (
@@ -138,6 +117,7 @@ const PainGraph=({userObj})=>{
                 className="graph_spotBtn"
                 onClick={()=>fetchData(name)}>{name}
             </button>
+
             ))}           
             
         </div>

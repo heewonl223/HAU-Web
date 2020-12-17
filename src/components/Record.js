@@ -44,12 +44,13 @@ const Record = ({recordObj, isOwner}) => {
         setNewPart(value);
     };
     return (
-        <div >
+        <div>
             {
                 editing ? (
                 <>
                     {isOwner && (
                         <>
+                        <div>{recordObj.createdAt}</div>
                             <form onSubmit={onSubmit} className="record_container recordEdit">
                                 <input 
                                     type="text" 
@@ -70,7 +71,7 @@ const Record = ({recordObj, isOwner}) => {
                                 <div>
                                     <input 
                                         type="part"
-                                        placeholder="pain spot?"
+                                        placeholder="Pain Spot"
                                         value={newPart} 
                                         required 
                                         onChange={onChange3} 
@@ -98,8 +99,9 @@ const Record = ({recordObj, isOwner}) => {
                     <div>
                         {isOwner && (
                             <div className="record_container">
-                                <div>{recordObj.text}</div>
-                                <div>{recordObj.hash}</div>
+                                <div>{recordObj.createdAt}</div>
+                                <div>📃 {recordObj.text}</div>
+                                <div>⭐ {recordObj.hash}</div>
                                 <div>{recordObj.part}:{recordObj.degree}</div>
                             </div>
                         )}
@@ -118,9 +120,9 @@ const Record = ({recordObj, isOwner}) => {
                             </div>
                         )}
                     </div>
-                )}
-        </div>
-    );
-};
-
-export default Record;
+                    )}
+            </div>
+        );
+    };
+    
+    export default Record;
