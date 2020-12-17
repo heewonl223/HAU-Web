@@ -12,9 +12,9 @@ Date.prototype.yyyymmdd = function() {
     let mm = this.getMinutes();
     let ss = this.getSeconds();
   
-    return [this.getFullYear(),'.',
+    return ['📆',this.getFullYear(),'.',
             (MM>9 ? '' : '0') + MM,'.',
-            (dd>9 ? '' : '0') + dd,'@',,
+            (dd>9 ? '' : '0') + dd,'⏱',
             (hh>9 ? '' : '0') + hh,':',
             (mm>9 ? '' : '0') + mm,':',
             (ss>9 ? '' : '0') + ss
