@@ -65,7 +65,7 @@ const AppRouter = ({isLoggedIn, userObj}) => {
                             <Diagnosis userObj={userObj}/>
                         </Route>
                         <Route exact path="/search">
-                            <Search />
+                            <Search userObj={userObj}/>
                         </Route>
                     </> 
                 ) : (

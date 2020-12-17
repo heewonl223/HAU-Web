@@ -1,101 +1,90 @@
-import React, { useState, Component} from "react";
+import React, {useState} from "react";
 import { dbService } from "fbase";
-import AsyncSelect from 'react-select/async';
 
-class Search extends Component {
-    constructor(props) {
-        super(props);
-        this.state={
-            selectedTag: [],
-        }
-    }
-    
-    loadOptions = async (inputValue) => {
-        inputValue = inputValue.toLowerCase().replace(/\W/g, "");
-        return new Promise((resolve => {
-                dbService.collection('records_list')
-                    .orderBy("hash")
-                    .startAt(inputValue)
-                    .endAt(inputValue + "\uf8ff")
-                    .get()
-                    .then(docs => {
-                        if (!docs.empty) {
-                            let recommendedTags = []
-                            docs.forEach(function (doc) {
-                                const tag = {
-                                    value: doc.id,
-                                    text: doc.data().text,
-                                    label: doc.data().hash,
-                                    creatorId: doc.data().creatorId
-                                }
-                                recommendedTags.push(tag)   // search 창 내
-                            });
-                            return resolve(recommendedTags)
-                        } else {
-                            return resolve([])
+const Search =({userObj})=>{
+    const [keyword,setKeyword]=useState('');
+    const [recommendedTags,setRecommendedTags]=useState([]);
+
+    const searching= async (event)=>{
+        event.preventDefault();
+        let Key=keyword;
+        
+        setRecommendedTags([]);
+        await dbService
+            .collection('records_list')
+            .orderBy("hash")
+            .startAt(Key)
+            .endAt(Key + "\uf8ff")
+            .get()
+            .then(docs => {
+                if(!docs.empty){
+                    docs.forEach((doc)=>{
+                        const tag={
+                            value: doc.id,
+                            text:doc.data().text,
+                            label:doc.data().hash,
+                            creatorId: doc.data().creatorId
                         }
+                        setRecommendedTags((recommendedTags)=>recommendedTags.concat(tag));
                     })
-    
-        }))
+                }
+                
+            })
+        setKeyword('');    
+    }
+
+
+    const onChange = (event) => {
+        const {
+            target: {value},
+        } = event;
+        setKeyword(value);
     };
 
-    handleOnChange = (tags) => {
-        this.setState({
-            selectedTag: [tags]
-        })
-    }
-
-    render() {
-        return (
+    return(
+        <div id="search_all">
             <div>
-                <div id = "search_input" >
-                    :)
-                <AsyncSelect
-                    loadOptions={this.loadOptions}
-                    onChange={this.handleOnChange}
-                />
-                </div>
-            <>
-                <div id ="select_tag">
-                    <p>Result of My Daily Log</p>
-                    {
-                        this.state.selectedTag.map(e => {
-                            return (
-                                (e.creatorId === this.props.userObj.uid) && (
-                                <>
-                                {console.log(e.creatorId)}
-                                {console.log(this.props.userObj.uid)}
-                                <li key={e.value}>
-                                    {e.text}
-                                    {e.label}
-                                </li>
-                                </>
-                            ))
-                        })
-                    }
-                </div>
-                <div id ="select_tag">
-                    <p>Result of Others Daily Log</p>
-                    {
-                        this.state.selectedTag.map(e => {
-                            return (
-                                (e.creatorId !== this.props.userObj.uid) && (
-                                <>
-                                {console.log(e.creatorId)}
-                                {console.log(this.props.userObj.uid)}
-                                <li key={e.value}>
-                                    {e.text}
-                                    {e.label}
-                                </li>
-                                </>
-                            ))
-                        })
-                    }
-                </div>
-            </>
+                <form onSubmit={searching}>
+                        <input id="search_input" value={keyword} onChange={onChange} type="text" placeholder="Enter Keyword"/>
+                        <input id="search_btn" type="submit" value="Search"/>                 
+                </form>
+            </div>
+
+            --------------------------------------------------
+            <div>
+                My Daily Log
+                <br/>
+                {recommendedTags.map((tag)=>(
+                    tag.creatorId===userObj.uid && 
+                        (<div className="record_container"> 
+                            📃 {tag.text}
+                            <br/>
+                            ⭐ {tag.label}
+                            <br/>
+                        </div>)
+                    
+                ))}
+            </div>
+            --------------------------------------------------
+            <div>
+                Other's Daily Log
+                <br/>
+                {recommendedTags.map((tag)=>(
+                    tag.creatorId!==userObj.uid && 
+                        (<div className="record_container">
+                            📃 {tag.text}
+                            <br/>
+                            ⭐ {tag.label}
+                            <br/>
+                        </div>)
+                    
+                ))}
+            </div>
         </div>
-        );
-    }
-    
+    );
 };
+
+
+
+
 export default Search;
