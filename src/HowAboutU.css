@@ -2,6 +2,7 @@
 
 
 /*App.js*/
+
 #init{
   width: 1800px;
   margin: 15px auto;
@@ -62,6 +63,7 @@ a:hover {text-decoration: none; font-weight: bold; color: #000000;}
 .App {
     text-align: center;
 }
+
 /*App.js end*/
 
 
@@ -137,7 +139,6 @@ a:hover {text-decoration: none; font-weight: bold; color: #000000;}
 }
  /*Footer.js end*/
 
-
  /* Auth.js */
  .authcontainer {
   width: 500px;
@@ -160,7 +161,6 @@ a:hover {text-decoration: none; font-weight: bold; color: #000000;}
   font-size: 25px;
   color: black;
   box-sizing: content-box;
-
 }
 
 .authSubmit {
@@ -213,7 +213,7 @@ a:hover {text-decoration: none; font-weight: bold; color: #000000;}
   border-radius: 30px;
   font-size: 15px;
 }
-/*profile.js end*/
+/*profile.js end*
 
 
 box{
@@ -233,7 +233,6 @@ form{
   clear:both;
   text-align: right; 
 }
-
 
 /* Dailylog.js*/
 textarea{
