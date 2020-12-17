@@ -100,28 +100,11 @@ a:hover {text-decoration: none; font-weight: bold; color: #000000;}
   text-align: center;
   border-bottom:5px solid #d9d9d9; 
 }
-  
-  #Nav2{
-  font-size: 20px;
-  padding-top: 40px;
-  padding-bottom: 20px;
-  font-family: "Consolas";
-  float: left;
-  width: 180px;
-  text-align: center;
-  border-bottom:5px solid #d9d9d9; 
-  margin-left: 10px;
-}
-
-#subNav{
-  margin-left:500px;
-  float:center;
-}
 /*Navigation.js end*/
 
 
 
-/*Footer.js*/
+ /*Footer.js*/
  .footer {
     position:fixed;
     left:0px;
@@ -201,21 +184,6 @@ a:hover {text-decoration: none; font-weight: bold; color: #000000;}
  /* Auth.js end */
 
 
-/*profile.js*/
-.logOut {
-  margin-left: 1060px;
-  text-align: center;
-  background: #04aaff;
-  color: white;
-  box-sizing: content-box;
-  cursor: pointer;
-  padding: 7px 20px;
-  border-radius: 30px;
-  font-size: 15px;
-}
-/*profile.js end*/
-
-
 box{
     display:inline-block;
     width:100px;
@@ -275,7 +243,7 @@ textarea{
     height: 40px;
     padding: 20px 0px 300px 20px;
     color: rgb(0, 0, 0);
-    border: 5px solid #71c2eb;
+    border: 5px solid #04aaff;
     border-radius: 20px;
     font-weight: 500;
     font-size: 20px;
@@ -284,16 +252,15 @@ textarea{
 .dailylogInput__arrow {
     position: relative;
     right: 0;
-    background-color: #55c6ff;
+    background-color: #04aaff;
     height: 50px;
     width: 100px;
     padding: 10px 0px;
     text-align: center;
     border-radius: 20px;
-    color: rgb(255, 252, 244);
+    color: white;
     box-sizing: border-box;
     margin-left: 250px;
-    font-size: 20px;
 }
   
 .dailylogInput__label {
@@ -438,7 +405,7 @@ textarea{
     height: 40px;
     padding: 0px 20px;
     color: black;
-    border: 5px solid #71c2eb;
+    border: 5px solid #04aaff;
     border-radius: 20px;
     font-weight: 500;
     font-size: 20px;
@@ -447,15 +414,14 @@ textarea{
 .diagnosisInput__arrow {
     position: absolute;
     right: 0;
-    background-color: #55c6ff;
+    background-color: #04aaff;
     height: 50px;
     width: 90px;
     padding: 10px 0px;
     text-align: center;
     border-radius: 20px;
-    color: rgb(255, 252, 244);
+    color: white;
     box-sizing: border-box;
-    font-size: 18px;
 }
 
 .diagnosisInput__label {
@@ -563,10 +529,28 @@ textarea{
   margin-bottom: 5px;
 }
 
+.result {
+  /*margin-bottom: 20px;
+  background-color: rgb(178, 199, 178);
+  width: 100%;
+  max-width: relative;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.8);*/
+}
+
 .result img {
   position: relative;
   width: 1000px;
   padding: 50px 0px 0px 0px;
+}
+
+.result h4 {
+  font-size: 20px;
 }
 
 .result_editUpdateBtn {
@@ -648,21 +632,36 @@ textarea{
 }
 
 #search_input{
-  width:1000px;
-  margin: 10px auto;
-  text-align: center;
-  font-size: 30px;
   font-family: "Consolas";
-  margin-right : 800px;
-  display:block;
-  color:#808080;
+  flex-grow: 1;
+  height: 45px;
+  padding: 0px 20px;
+  color: black;
+  border: 3px solid #04aaff;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 20px;
 }
 
-#select_tag{
-  text-align: left;
-  font-size: 30px;
+#search_btn{
+  border: 0px;
   font-family: "Consolas";
+  right: 0;
+  background-color: #04aaff;
+  height: 50px;
+  width: 90px;
+  padding: 10px 0px;
+  text-align: center;
+  border-radius: 20px;
+  color: white;
+  box-sizing: border-box;
 }
+
+#search_all{
+  font-family: "Consolas";
+  margin-bottom: 50px;
+}
+
 /* Select.js end */
 
 
@@ -674,6 +673,7 @@ textarea{
 }
 
 .graph_updateBtn{
+  width: 80px;
   border-radius: 20px;
   cursor: pointer;
   background-color: rgba(25, 209, 255, 0.479);
@@ -683,14 +683,12 @@ textarea{
 }
 
 .graph_spotBtn{
-  width: auto;
+  width: 60px;
   border-radius: 20px;
   cursor: pointer;
   background-color: #fcf3dc7e;
   margin-right: 5px;
   margin-top : 20px;
-  padding: 4px;
-  font-size: 20px;
+  padding: 2px;
 }
 /* PainGraph.js end */
-
